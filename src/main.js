@@ -31,7 +31,12 @@ const createFilterTemplate = () => {
   );
 };
 
-// Функция 
+// Функция для рендеринга компонентов на страницу.
 const render = (container, template, place) => {
   container.insertAdjacentHTML(place, template);
 };
+
+// Сохраняем в переменные ключевые элементы страницы.
+const siteMainElement = document.querySelector('.main');
+const siteHeaderElement = siteMainElement.querySelector('main__control');
+
