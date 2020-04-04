@@ -310,5 +310,11 @@ const render = (container, template, place) => {
 const siteMainElement = document.querySelector('.main');
 const siteHeaderElement = siteMainElement.querySelector('.main__control');
 
+
 render(siteHeaderElement, createMenuTemplate(), 'beforeend');
 render(siteMainElement, createFilterTemplate(), 'beforeend');
+render(siteMainElement, createBoardTemplate(), 'beforeend');
+
+// Сохраняем в переменные новые ключевые элементы после рендеринга.
+const boardElement = siteMainElement.querySelector('.board');
+const taskListElement = siteMainElement.querySelector('.board__tasks');
