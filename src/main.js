@@ -38,5 +38,7 @@ const render = (container, template, place) => {
 
 // Сохраняем в переменные ключевые элементы страницы.
 const siteMainElement = document.querySelector('.main');
-const siteHeaderElement = siteMainElement.querySelector('main__control');
+const siteHeaderElement = siteMainElement.querySelector('.main__control');
 
+render(siteHeaderElement, createMenuTemplate(), 'beforeend');
+render(siteMainElement, createFilterTemplate(), 'beforeend');
