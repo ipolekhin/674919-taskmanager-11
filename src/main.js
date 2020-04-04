@@ -8,7 +8,7 @@ const createMenuTemplate = () => {
       <input type="radio" name="control" id="control__statistic" class="control__input visually-hidden">
       <label for="control__statistic" class="control__label">STATISTICS</label>
     </section>`
-  )
+  );
 };
 
 const createFilterTemplate = () => {
@@ -28,5 +28,10 @@ const createFilterTemplate = () => {
       <input type="radio" id="filter__archive" class="filter__input visually-hidden" name="filter">
       <label for="filter__archive" class="filter__label">Archive <span class="filter__archive-count">115</span></label>
     </section>`
-  )
+  );
+};
+
+// Функция 
+const render = (container, template, place) => {
+  container.insertAdjacentHTML(place, template);
 };
