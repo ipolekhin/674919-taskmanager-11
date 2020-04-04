@@ -1,3 +1,5 @@
+const TASK_COUNT = 3;
+
 const createMenuTemplate = () => {
   return (
     `<section class="control__btn-wrap">
@@ -318,3 +320,13 @@ render(siteMainElement, createBoardTemplate(), 'beforeend');
 // Сохраняем в переменные новые ключевые элементы после рендеринга.
 const boardElement = siteMainElement.querySelector('.board');
 const taskListElement = siteMainElement.querySelector('.board__tasks');
+
+render(taskListElement, createTaskEditTemplate(), 'beforeend');
+
+for (let i = 0; i < TASK_COUNT; i++) {
+  render(taskListElement, createTaskTemplate(), 'beforeend');
+}
+
+render(boardElement, createLoadMoreButtonTemplate(), 'beforeend');
+
+
