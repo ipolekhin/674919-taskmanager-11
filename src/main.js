@@ -1,5 +1,13 @@
 'use strict';
 
+import {createMenuTemplate} from "./components/site-menu.js";
+import {createSortingTemplate} from "./components/sorting";
+import {createFilterTemplate} from "./components/filter.js";
+import {createTaskTemplate} from "./components/task.js";
+import {createTaskEditTemplate} from "./components/task-edit.js";
+import {createLoadMoreButtonTemplate} from "./components/load-more-button.js";
+import {createBoardTemplate} from "./components/board.js";
+
 const TASK_COUNT = 3;
 
 // Функция для рендеринга компонентов на страницу.
@@ -20,6 +28,7 @@ render(siteMainElement, createBoardTemplate());
 const boardElement = siteMainElement.querySelector(`.board`);
 const taskListElement = siteMainElement.querySelector(`.board__tasks`);
 
+render(boardElement, createSortingTemplate(), `afterbegin`);
 render(taskListElement, createTaskEditTemplate());
 
 for (let i = 0; i < TASK_COUNT; i++) {
@@ -27,5 +36,3 @@ for (let i = 0; i < TASK_COUNT; i++) {
 }
 
 render(boardElement, createLoadMoreButtonTemplate());
-
-
