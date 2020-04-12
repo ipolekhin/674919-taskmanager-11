@@ -1,4 +1,4 @@
-export const createTaskTemplate = () => {
+const createTaskTemplate = () => {
   return (
     `<article class="card card--black">
       <div class="card__form">
@@ -45,3 +45,5 @@ export const createTaskTemplate = () => {
     </article>`
   );
 };
+
+export {createTaskTemplate};

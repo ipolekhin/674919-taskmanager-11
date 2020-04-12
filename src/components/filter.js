@@ -1,4 +1,4 @@
-export const createFilterTemplate = () => {
+const createFilterTemplate = () => {
   return (
     `<section class="main__filter filter container">
       <input type="radio" id="filter__all" class="filter__input visually-hidden" name="filter" checked="">
@@ -17,3 +17,5 @@ export const createFilterTemplate = () => {
     </section>`
   );
 };
+
+export {createFilterTemplate};
