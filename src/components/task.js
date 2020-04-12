@@ -1,4 +1,6 @@
-const createTaskTemplate = () => {
+const createTaskTemplate = (task) => {
+  const {} = task;
+
   return (
     `<article class="card card--black">
       <div class="card__form">
