@@ -13,15 +13,11 @@ const createFilterMarkup = (name, count) => {
   );
 };
 
-const createFilterTemplate = () => {
-  const filterMarkup = createFilterMarkup(`all`, 13);
+const createFilterTemplate = (filters) => {
+  const filterMarkup = filters.map((it) => createFilterMarkup(it.name, it.count)).join('\n');
+
   return (
     `<section class="main__filter filter container">
-      ${filterMarkup}
-      ${filterMarkup}
-      ${filterMarkup}
-      ${filterMarkup}
-      ${filterMarkup}
       ${filterMarkup}
     </section>`
   );
