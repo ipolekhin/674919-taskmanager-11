@@ -9,7 +9,7 @@ import {generateFilters} from "./mock/filter";
 import {generateTasks} from "./mock/task";
 
 const FIRST = 1;
-const TASK_COUNT = 22;
+const TASK_COUNT = 20;
 const SHOWING_TASKS_COUNT_ON_START = 8;
 const SHOWING_TASKS_COUNT_BY_BUTTON = 8;
 
@@ -23,7 +23,6 @@ const siteMainElement = document.querySelector(`.main`);
 const siteHeaderElement = siteMainElement.querySelector(`.main__control`);
 const filters = generateFilters();
 const tasks = generateTasks(TASK_COUNT);
-console.log(tasks);
 
 render(siteHeaderElement, createMenuTemplate());
 render(siteMainElement, createFilterTemplate(filters));
@@ -49,9 +48,9 @@ createTasks(FIRST, showingTasksCount);
 
 render(boardElement, createLoadMoreButtonTemplate());
 
-const loadMoreButton = document.querySelector('.load-more');
+const loadMoreButton = document.querySelector(`.load-more`);
 
-loadMoreButton.addEventListener('click', () => {
+loadMoreButton.addEventListener(`click`, () => {
   const prevTaskCount = showingTasksCount;
 
   showingTasksCount = showingTasksCount + SHOWING_TASKS_COUNT_BY_BUTTON;

@@ -17,7 +17,7 @@ const createFilterMarkup = (filter, isChecked) => {
 };
 
 const createFilterTemplate = (filters) => {
-  const filterMarkup = filters.map((filter, i) => createFilterMarkup(filter, i === 0)).join('\n');
+  const filterMarkup = filters.map((filter, i) => createFilterMarkup(filter, i === 0)).join(`\n`);
 
   return (
     `<section class="main__filter filter container">
