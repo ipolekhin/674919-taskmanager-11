@@ -35,10 +35,26 @@ const taskListElement = siteMainElement.querySelector(`.board__tasks`);
 render(boardElement, createSortingTemplate(), `afterbegin`);
 render(taskListElement, createTaskEditTemplate(tasks[0]));
 
-const showingTasksCount = SHOWING_TASKS_COUNT_ON_START;
+let showingTasksCount = SHOWING_TASKS_COUNT_ON_START;
 
 for (let i = 1; i < showingTasksCount; i++) {
   render(taskListElement, createTaskTemplate(tasks[i]));
 }
 
 render(boardElement, createLoadMoreButtonTemplate());
+
+const loadMoreButton = document.querySelector('.load-more');
+
+loadMoreButton.addEventListener('click', () => {
+  const prevTaskCount = showingTasksCount;
+
+  showingTasksCount = showingTasksCount + SHOWING_TASKS_COUNT_BY_BUTTON;
+  tasks.slice(prevTaskCount, showingTasksCount)
+    .forEach((task) => {
+      render(taskListElement, createTaskTemplate(task));
+    });
+
+  if (showingTasksCount >= tasks.length) {
+    loadMoreButton.remove();
+  }
+});
