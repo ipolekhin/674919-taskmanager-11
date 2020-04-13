@@ -1,11 +1,8 @@
 const createTaskTemplate = (task) => {
-  const {} = task;
-  const color = `black`;
-  const description = `Example task with default color.`;
+  const {description, dueDate, color, repeatingDays, isArchive, isFavorite} = task;
+
   const date = `23 September`;
   const time = `16:15`;
-  const isArchive = true;
-  const isFavorite = false;
   const repeatClass = `card--repeat`;
   const deadlineClass = `card--deadline`;
   const archiveButtonInactiveClass = isArchive ? `` : `card__btn--disabled`;

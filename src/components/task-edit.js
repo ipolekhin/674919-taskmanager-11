@@ -143,9 +143,8 @@ const createRepeatingDaysMarkup = () => {
 };
 
 const createTaskEditTemplate = (task) => {
-  const {} = task;
-  const color = `black`;
-  const description = `Here is a card with filled data.`;
+  const {description, dueDate, color, repeatingDays} = task;
+
   const date = `23 September`;
   const time = `16:15`;
   const repeatClass = `card--repeat`;
