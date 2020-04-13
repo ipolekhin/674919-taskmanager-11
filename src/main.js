@@ -8,7 +8,9 @@ import {createBoardTemplate} from "./components/board.js";
 import {generateFilters} from "./mock/filter";
 import {generateTasks} from "./mock/task";
 
-const TASK_COUNT = 3;
+const TASK_COUNT = 22;
+const SHOWING_TASKS_COUNT_ON_START = 8;
+const SHOWING_TASKS_COUNT_BY_BUTTON = 8;
 
 // Функция для рендеринга компонентов на страницу.
 const render = (container, template, place = `beforeend`) => {
