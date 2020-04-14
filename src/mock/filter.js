@@ -1,10 +1,10 @@
 import {FILTER_NAMES} from "../const";
 
-const generateFilters = () => {
+const generateFilters = (count) => {
   return FILTER_NAMES.map((it) => {
     return {
       'name': it,
-      'count': Math.floor(Math.random() * 10),
+      'count': count[it],
     };
   });
 };

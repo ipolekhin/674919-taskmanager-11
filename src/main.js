@@ -1,3 +1,4 @@
+import {FILTER_NAMES} from "./const";
 import {createBoardTemplate} from "./components/board.js";
 import {createFilterTemplate} from "./components/filter.js";
 import {createLoadMoreButtonTemplate} from "./components/load-more-button.js";
@@ -21,8 +22,41 @@ const render = (container, template, place = `beforeend`) => {
 // Сохраняем в переменные ключевые элементы страницы.
 const siteMainElement = document.querySelector(`.main`);
 const siteHeaderElement = siteMainElement.querySelector(`.main__control`);
-const filters = generateFilters();
+
+// Генерируем задачи
 const tasks = generateTasks(TASK_COUNT);
+console.log(tasks);
+
+const countsOfFilters = {
+  'all': 0,
+  'overdue': 0,
+  'today': 0,
+  'favorites': 0,
+  'repeating': 0,
+  'archive': 0,
+};
+
+tasks.map((task, index) => {
+  const {dueDate, repeatingDays, isArchive, isFavorite} = task;
+  const isRepeatingTask = Object.values(repeatingDays).some(Boolean);
+
+  countsOfFilters[`all`]++;
+  dueDate instanceof Date && dueDate < Date.now() ? countsOfFilters[`overdue`]++ : null;
+
+  if (dueDate instanceof Date && dueDate < Date.now()) {
+    const date = Date.now();
+    countsOfFilters[`today`]++;
+    // console.log(dueDate.getDate());
+    // console.log(date.getDate);
+  }
+
+  isFavorite ? countsOfFilters[`favorites`]++ : null;
+  isRepeatingTask ? countsOfFilters[`repeating`]++ : null;
+  isArchive ? countsOfFilters[`archive`]++ : null;
+});
+
+const filters = generateFilters(countsOfFilters);
+console.log(generateFilters(countsOfFilters));
 
 render(siteHeaderElement, createMenuTemplate());
 render(siteMainElement, createFilterTemplate(filters));
