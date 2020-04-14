@@ -26,12 +26,14 @@ const getRandomIntegerNumber = (min, max) => {
   return min + Math.floor(Math.random() * (max - min));
 };
 
+// Генерируем дату и время от текущего +/- 8
 const getRandomDate = () => {
   const targetDate = new Date();
   const sign = Math.random() > 0.5 ? 1 : -1;
   const diffValue = sign * getRandomIntegerNumber(0, 8);
 
   targetDate.setDate(targetDate.getDate() + diffValue);
+  targetDate.setHours(diffValue);
 
   return targetDate;
 };
@@ -47,7 +49,7 @@ const generateTask = () => {
 
   return {
     description: getRandomArrayItem(DescriptionItems),
-    dueDate: Math.random() > 0.5 ? new Date() : null,
+    dueDate: dueDate,
     repeatingDays: dueDate ? DefaultRepeatingDays : generateRepeatingDays(),
     color: getRandomArrayItem(COLORS),
     isArchive: Math.random() > 0.5,
