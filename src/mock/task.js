@@ -33,7 +33,7 @@ const getRandomDate = () => {
   const diffValue = sign * getRandomIntegerNumber(0, 8);
 
   targetDate.setDate(targetDate.getDate() + diffValue);
-  targetDate.setHours(19);
+  targetDate.setHours(23);
 
   return targetDate;
 };
