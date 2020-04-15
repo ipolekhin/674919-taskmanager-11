@@ -2,7 +2,7 @@ import {FILTER_NAMES} from "../const";
 
 // Функция считатет статиститку фильтра
 const calculateFilterStatistics = (tasks) => {
-  const statisticsOfFilters = {
+  const valuesOfFilterStatistics = {
     'all': 0,
     'overdue': 0,
     'today': 0,
@@ -11,29 +11,30 @@ const calculateFilterStatistics = (tasks) => {
     'archive': 0,
   };
 
-  tasks.map((task, index) => {
+  tasks.map((task) => {
     const date = new Date;
     const {dueDate, repeatingDays, isArchive, isFavorite} = task;
-    const isRepeatingTask = Object.values(repeatingDays).some(Boolean);
+    const isRepeatingTask = Object.values(repeatingDays).some(element => element);
 
-    statisticsOfFilters[`all`]++;
-    dueDate instanceof Date && dueDate < date ? statisticsOfFilters[`overdue`]++ : null;
-    dueDate instanceof Date && dueDate.getDate() === date.getDate() ? statisticsOfFilters[`today`]++ : null;
-    isFavorite ? statisticsOfFilters[`favorites`]++ : null;
-    isRepeatingTask ? statisticsOfFilters[`repeating`]++ : null;
-    isArchive ? statisticsOfFilters[`archive`]++ : null;
+    valuesOfFilterStatistics[`all`]++;
+    dueDate instanceof Date && dueDate < date ? valuesOfFilterStatistics[`overdue`]++ : null;
+    dueDate instanceof Date && dueDate.getDate() === date.getDate() ? valuesOfFilterStatistics[`today`]++ : null;
+    isFavorite ? valuesOfFilterStatistics[`favorites`]++ : null;
+    isRepeatingTask ? valuesOfFilterStatistics[`repeating`]++ : null;
+    isArchive ? valuesOfFilterStatistics[`archive`]++ : null;
   });
 
-  return statisticsOfFilters;
+  return valuesOfFilterStatistics;
 };
 
-const generateFilters = (statistics) => {
+const generateFilters = (tasks) => {
+  const valuesOfFilterStatistics = calculateFilterStatistics(tasks);
   return FILTER_NAMES.map((filterName) => {
     return {
       'name': filterName,
-      'count': statistics[filterName],
+      'count': valuesOfFilterStatistics[filterName],
     };
   });
 };
 
-export {generateFilters, calculateFilterStatistics};
+export {generateFilters};

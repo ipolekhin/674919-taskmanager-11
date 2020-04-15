@@ -6,7 +6,7 @@ import {createMenuTemplate} from "./components/site-menu.js";
 import {createSortingTemplate} from "./components/sorting";
 import {createTaskTemplate} from "./components/task.js";
 import {createTaskEditTemplate} from "./components/task-edit.js";
-import {generateFilters, calculateFilterStatistics} from "./mock/filter";
+import {generateFilters} from "./mock/filter";
 import {generateTasks} from "./mock/task";
 
 const FIRST = 1;
@@ -25,8 +25,7 @@ const siteHeaderElement = siteMainElement.querySelector(`.main__control`);
 
 // Генерируем задачи
 const tasks = generateTasks(TASK_COUNT);
-const filters = generateFilters(calculateFilterStatistics(tasks));
-console.log(filters);
+const filters = generateFilters(tasks);
 
 render(siteHeaderElement, createMenuTemplate());
 render(siteMainElement, createFilterTemplate(filters));
