@@ -14,14 +14,15 @@ const TASK_COUNT = 20;
 const SHOWING_TASKS_COUNT_ON_START = 8;
 const SHOWING_TASKS_COUNT_BY_BUTTON = 8;
 
+// Сохраняем в переменные ключевые элементы страницы.
+const siteMainElement = document.querySelector(`.main`);
+const siteHeaderElement = siteMainElement.querySelector(`.main__control`);
+let showingTasksCount = SHOWING_TASKS_COUNT_ON_START;
+
 // Функция для рендеринга компонентов на страницу.
 const render = (container, template, place = `beforeend`) => {
   container.insertAdjacentHTML(place, template);
 };
-
-// Сохраняем в переменные ключевые элементы страницы.
-const siteMainElement = document.querySelector(`.main`);
-const siteHeaderElement = siteMainElement.querySelector(`.main__control`);
 
 // Генерируем задачи
 const tasks = generateTasks(TASK_COUNT);
@@ -38,8 +39,6 @@ const taskListElement = siteMainElement.querySelector(`.board__tasks`);
 render(boardElement, createSortingTemplate(), `afterbegin`);
 render(taskListElement, createTaskEditTemplate(tasks[0]));
 
-let showingTasksCount = SHOWING_TASKS_COUNT_ON_START;
-
 const createTasks = (begin, end) => {
   tasks.slice(begin, end)
     .forEach((task) => {
@@ -53,6 +52,7 @@ render(boardElement, createLoadMoreButtonTemplate());
 
 const loadMoreButton = document.querySelector(`.load-more`);
 
+// Создадим обработчик событий на кнопку loadmore
 loadMoreButton.addEventListener(`click`, () => {
   const prevTaskCount = showingTasksCount;
 
