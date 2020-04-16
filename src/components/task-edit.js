@@ -1,5 +1,5 @@
 import {COLORS, DAYS, MONTH_NAMES} from "../const";
-import {formatTime} from "../utils";
+import {blockForTaskTemplates} from "../utils";
 
 const createColorsMarkup = (colors, currentColor) => {
   return colors
@@ -43,22 +43,12 @@ const createRepeatingDaysMarkup = (days, repeatingDays) => {
     })
     .join(`\n`);
 };
-//
-// const createTasks = (begin, end) => {
-//   const tasksShow = tasks.slice(begin, end)
-//     .map((task) => createTaskTemplate(task)).join(`\n`);
-//   render(taskListElement, tasksShow);
-// };
 
 const createTaskEditTemplate = (task) => {
   const {description, dueDate, color, repeatingDays} = task;
-  const isExpired = dueDate instanceof Date && dueDate < Date.now();
-  const isDateShowing = !!dueDate;
-  const date = isDateShowing ? `${dueDate.getDate()} ${MONTH_NAMES[dueDate.getMonth()]}` : ``;
-  const time = isDateShowing ? formatTime(dueDate) : ``;
+  const {isDateShowing, date, time, deadlineClass} = blockForTaskTemplates(dueDate);
   const isRepeatingTask = Object.values(repeatingDays).some((element) => element);
   const repeatClass = isRepeatingTask ? `card--repeat` : ``;
-  const deadlineClass = isExpired ? `card--deadline` : ``;
   const colorsMarkup = createColorsMarkup(COLORS, color);
   const repeatingDaysMarkup = createRepeatingDaysMarkup(DAYS, repeatingDays);
 
