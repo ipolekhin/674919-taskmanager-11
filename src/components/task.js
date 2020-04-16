@@ -38,16 +38,16 @@ const createTaskTemplate = (task) => {
 
           <div class="card__settings">
             <div class="card__details">
-              ${ isDateShowing ?
-              `<div class="card__dates">
-                <div class="card__date-deadline">
-                  <p class="card__input-deadline-wrap">
-                    <span class="card__date">${date}</span>
-                    <span class="card__time">${time}</span>
-                  </p>
-                </div>
-              </div>` : ``
-              }
+    ${ isDateShowing ?
+      `<div class="card__dates">
+        <div class="card__date-deadline">
+          <p class="card__input-deadline-wrap">
+            <span class="card__date">${date}</span>
+            <span class="card__time">${time}</span>
+          </p>
+        </div>
+      </div>` : ``
+    }
             </div>
           </div>
         </div>

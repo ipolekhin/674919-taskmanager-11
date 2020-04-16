@@ -1,4 +1,4 @@
-import {COLORS, DAYS, MONTH_NAMES} from "../const";
+import {COLORS, DAYS} from "../const";
 import {blockForTaskTemplates} from "../utils";
 
 const createColorsMarkup = (colors, currentColor) => {
