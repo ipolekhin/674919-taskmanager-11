@@ -40,10 +40,9 @@ render(boardElement, createSortingTemplate(), `afterbegin`);
 render(taskListElement, createTaskEditTemplate(tasks[0]));
 
 const createTasks = (begin, end) => {
-  tasks.slice(begin, end)
-    .forEach((task) => {
-      render(taskListElement, createTaskTemplate(task));
-    });
+  const tasksShow = tasks.slice(begin, end)
+    .map((task) => createTaskTemplate(task)).join(`\n`);
+  render(taskListElement, tasksShow)
 };
 
 createTasks(FIRST, showingTasksCount);

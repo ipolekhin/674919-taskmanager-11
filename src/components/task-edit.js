@@ -43,6 +43,12 @@ const createRepeatingDaysMarkup = (days, repeatingDays) => {
     })
     .join(`\n`);
 };
+//
+// const createTasks = (begin, end) => {
+//   const tasksShow = tasks.slice(begin, end)
+//     .map((task) => createTaskTemplate(task)).join(`\n`);
+//   render(taskListElement, tasksShow);
+// };
 
 const createTaskEditTemplate = (task) => {
   const {description, dueDate, color, repeatingDays} = task;

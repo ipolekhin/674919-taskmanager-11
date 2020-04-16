@@ -10,9 +10,9 @@ const calculateFilterStatistics = (tasks) => {
     'repeating': 0,
     'archive': 0,
   };
+  const date = new Date;
 
   tasks.map((task) => {
-    const date = new Date;
     const {dueDate, repeatingDays, isArchive, isFavorite} = task;
     const isRepeatingTask = Object.values(repeatingDays).some(element => element);
 
