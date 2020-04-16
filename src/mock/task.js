@@ -47,7 +47,7 @@ const generateTask = () => {
   return {
     description: getRandomItem(DESCRIPTION_ITEMS),
     // Дата и время или null
-    dueDate: dueDate,
+    dueDate,
     // Объект с фиксированными ключами
     repeatingDays: dueDate ? DEFAULT_REPEATING_DAYS : generateRepeatingDays(),
     color: getRandomItem(COLORS),

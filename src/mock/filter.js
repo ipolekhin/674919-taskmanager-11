@@ -10,18 +10,28 @@ const calculateFilterStatistics = (tasks) => {
     'repeating': 0,
     'archive': 0,
   };
-  const date = new Date;
+  const date = new Date();
 
   tasks.map((task) => {
     const {dueDate, repeatingDays, isArchive, isFavorite} = task;
-    const isRepeatingTask = Object.values(repeatingDays).some(element => element);
+    const isRepeatingTask = Object.values(repeatingDays).some((element) => element);
 
     valuesOfFilterStatistics[`all`]++;
-    dueDate instanceof Date && dueDate < date ? valuesOfFilterStatistics[`overdue`]++ : null;
-    dueDate instanceof Date && dueDate.getDate() === date.getDate() ? valuesOfFilterStatistics[`today`]++ : null;
-    isFavorite ? valuesOfFilterStatistics[`favorites`]++ : null;
-    isRepeatingTask ? valuesOfFilterStatistics[`repeating`]++ : null;
-    isArchive ? valuesOfFilterStatistics[`archive`]++ : null;
+    if (dueDate instanceof Date && dueDate < date) {
+      valuesOfFilterStatistics[`overdue`]++;
+    }
+    if (dueDate instanceof Date && dueDate.getDate() === date.getDate()) {
+      valuesOfFilterStatistics[`today`]++;
+    }
+    if (isFavorite) {
+      valuesOfFilterStatistics[`favorites`]++;
+    }
+    if (isRepeatingTask) {
+      valuesOfFilterStatistics[`repeating`]++;
+    }
+    if (isArchive) {
+      valuesOfFilterStatistics[`archive`]++;
+    }
   });
 
   return valuesOfFilterStatistics;

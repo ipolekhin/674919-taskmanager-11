@@ -26,7 +26,6 @@ const render = (container, template, place = `beforeend`) => {
 // Генерируем задачи
 const tasks = generateTasks(TASK_COUNT);
 const filters = generateFilters(tasks);
-console.log(tasks);
 
 render(siteHeaderElement, createMenuTemplate());
 render(siteMainElement, createFilterTemplate(filters));
@@ -42,7 +41,7 @@ render(taskListElement, createTaskEditTemplate(tasks[0]));
 const createTasks = (begin, end) => {
   const tasksShow = tasks.slice(begin, end)
     .map((task) => createTaskTemplate(task)).join(`\n`);
-  render(taskListElement, tasksShow)
+  render(taskListElement, tasksShow);
 };
 
 createTasks(FIRST, showingTasksCount);
