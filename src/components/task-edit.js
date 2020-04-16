@@ -89,7 +89,7 @@ const createTaskEditTemplate = (task) => {
                   date: <span class="card__date-status">${isDateShowing ? `yes` : `no`}</span>
                 </button>
 
-                <fieldset class="card__date-deadline" ${!isDateShowing ? `disabled` : ``}>
+                <fieldset class="card__date-deadline" ${isRepeatingTask ? `disabled` : ``}>
                   <label class="card__input-deadline-wrap">
                     <input
                       class="card__date"
