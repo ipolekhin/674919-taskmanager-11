@@ -30,6 +30,7 @@ const calculateFilterStatistics = (tasks) => {
       valuesOfFilterStatistics[`repeating`]++;
     }
     if (isArchive) {
+      valuesOfFilterStatistics[`all`]--;
       valuesOfFilterStatistics[`archive`]++;
     }
   });
