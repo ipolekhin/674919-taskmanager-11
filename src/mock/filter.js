@@ -12,7 +12,7 @@ const calculateFilterStatistics = (tasks) => {
   };
   const date = new Date();
 
-  tasks.map((task) => {
+  tasks.forEach((task) => {
     const {dueDate, repeatingDays, isArchive, isFavorite} = task;
     const isRepeatingTask = Object.values(repeatingDays).some((element) => element);
 
@@ -30,15 +30,16 @@ const calculateFilterStatistics = (tasks) => {
       valuesOfFilterStatistics[`repeating`]++;
     }
     if (isArchive) {
+      valuesOfFilterStatistics[`all`]--;
       valuesOfFilterStatistics[`archive`]++;
     }
   });
-
   return valuesOfFilterStatistics;
 };
 
 const generateFilters = (tasks) => {
   const valuesOfFilterStatistics = calculateFilterStatistics(tasks);
+
   return FILTER_NAMES.map((filterName) => {
     return {
       'name': filterName,

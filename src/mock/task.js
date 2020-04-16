@@ -49,7 +49,7 @@ const generateTask = () => {
     // Дата и время или null
     dueDate,
     // Объект с фиксированными ключами
-    repeatingDays: dueDate ? DEFAULT_REPEATING_DAYS : generateRepeatingDays(),
+    repeatingDays: dueDate ? Object.assign({}, DEFAULT_REPEATING_DAYS) : generateRepeatingDays(),
     color: getRandomItem(COLORS),
     isArchive: getRandomBooleanValue(),
     isFavorite: getRandomBooleanValue(),

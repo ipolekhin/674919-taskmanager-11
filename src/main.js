@@ -18,14 +18,14 @@ const siteMainElement = document.querySelector(`.main`);
 const siteHeaderElement = siteMainElement.querySelector(`.main__control`);
 let showingTasksCount = SHOWING_TASKS_COUNT_ON_START;
 
+// Генерируем задачи
+const tasks = generateTasks(TASK_COUNT);
+const filters = generateFilters(tasks);
+
 // Функция для рендеринга компонентов на страницу.
 const render = (container, template, place = `beforeend`) => {
   container.insertAdjacentHTML(place, template);
 };
-
-// Генерируем задачи
-const tasks = generateTasks(TASK_COUNT);
-const filters = generateFilters(tasks);
 
 render(siteHeaderElement, createMenuTemplate());
 render(siteMainElement, createFilterTemplate(filters));

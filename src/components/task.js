@@ -1,15 +1,9 @@
-import {MONTH_NAMES} from "../const.js";
-import {formatTime} from "../utils.js";
+import {blockForTaskTemplates} from "../utils.js";
 
 const createTaskTemplate = (task) => {
   const {description, dueDate, color, repeatingDays, isArchive, isFavorite} = task;
-
-  const isExpired = dueDate instanceof Date && dueDate < Date.now();
-  const isDateShowing = !!dueDate;
-  const date = isDateShowing ? `${dueDate.getDate()} ${MONTH_NAMES[dueDate.getMonth()]}` : ``;
-  const time = isDateShowing ? formatTime(dueDate) : ``;
+  const {isDateShowing, date, time, deadlineClass} = blockForTaskTemplates(dueDate);
   const repeatClass = Object.values(repeatingDays).some((element) => element) ? `card--repeat` : ``;
-  const deadlineClass = isExpired ? `card--deadline` : ``;
   const archiveButtonInactiveClass = isArchive ? `` : `card__btn--disabled`;
   const favoriteButtonInactiveClass = isFavorite ? `` : `card__btn--disabled`;
 
@@ -44,14 +38,16 @@ const createTaskTemplate = (task) => {
 
           <div class="card__settings">
             <div class="card__details">
-              <div class="card__dates">
-                <div class="card__date-deadline">
-                  <p class="card__input-deadline-wrap">
-                    <span class="card__date">${date}</span>
-                    <span class="card__time">${time}</span>
-                  </p>
-                </div>
-              </div>
+    ${ isDateShowing ?
+      `<div class="card__dates">
+        <div class="card__date-deadline">
+          <p class="card__input-deadline-wrap">
+            <span class="card__date">${date}</span>
+            <span class="card__time">${time}</span>
+          </p>
+        </div>
+      </div>` : ``
+    }
             </div>
           </div>
         </div>
