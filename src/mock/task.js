@@ -1,10 +1,9 @@
-import {COLORS, DESCRIPTION_ITEMS} from "../const.js";
+import {COLORS, DESCRIPTION_ITEMS, DAYS} from "../const.js";
 import {getRandomBooleanValue} from "../utils";
 
 const DAYS_VALUE = 8;
 const HOURS_VALUE = 23;
-
-const DefaultRepeatingDays = {
+const DEFAULT_REPEATING_DAYS = {
   'mo': false,
   'tu': false,
   'we': false,
@@ -37,18 +36,20 @@ const getRandomDate = () => {
 };
 
 const generateRepeatingDays = () => {
-  return Object.assign({}, DefaultRepeatingDays, {
-    'mo': getRandomBooleanValue(),
-  });
+  return Object.assign({}, ...DAYS.map((day) =>
+    ({[day]: getRandomBooleanValue()})
+  ));
 };
 
 const generateTask = () => {
-  const dueDate = getRandomBooleanValue() ? null : getRandomDate();
+  const dueDate = getRandomBooleanValue() ? getRandomDate() : null;
 
   return {
     description: getRandomItem(DESCRIPTION_ITEMS),
+    // Дата и время или null
     dueDate: dueDate,
-    repeatingDays: dueDate ? DefaultRepeatingDays : generateRepeatingDays(),
+    // Объект с фиксированными ключами
+    repeatingDays: dueDate ? DEFAULT_REPEATING_DAYS : generateRepeatingDays(),
     color: getRandomItem(COLORS),
     isArchive: getRandomBooleanValue(),
     isFavorite: getRandomBooleanValue(),

@@ -1,4 +1,3 @@
-import {FILTER_NAMES} from "./const";
 import {createBoardTemplate} from "./components/board.js";
 import {createFilterTemplate} from "./components/filter.js";
 import {createLoadMoreButtonTemplate} from "./components/load-more-button.js";
@@ -28,6 +27,7 @@ const render = (container, template, place = `beforeend`) => {
 const tasks = generateTasks(TASK_COUNT);
 const filters = generateFilters(tasks);
 console.log(tasks);
+
 render(siteHeaderElement, createMenuTemplate());
 render(siteMainElement, createFilterTemplate(filters));
 render(siteMainElement, createBoardTemplate());
