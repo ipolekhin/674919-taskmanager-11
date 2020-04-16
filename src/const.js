@@ -1,5 +1,11 @@
 export const COLORS = [`black`, `yellow`, `blue`, `green`, `pink`];
 
+export const DESCRIPTION_ITEMS = [
+  `Изучить теорию`,
+  `Сделать домашку`,
+  `Пройти интенсив на соточку`,
+];
+
 export const MONTH_NAMES = [
   `January`,
   `February`,

@@ -1,10 +1,8 @@
-import {COLORS} from "../const.js";
+import {COLORS, DESCRIPTION_ITEMS} from "../const.js";
+import {getRandomBooleanValue} from "../utils";
 
-const DescriptionItems = [
-  `Изучить теорию`,
-  `Сделать домашку`,
-  `Пройти интенсив на соточку`,
-];
+const DAYS_VALUE = 8;
+const HOURS_VALUE = 23;
 
 const DefaultRepeatingDays = {
   'mo': false,
@@ -16,10 +14,10 @@ const DefaultRepeatingDays = {
   'su': false,
 };
 
-const getRandomArrayItem = (array) => {
-  const randomIndex = getRandomIntegerNumber(0, array.length);
+const getRandomItem = (items) => {
+  const randomIndex = getRandomIntegerNumber(0, items.length);
 
-  return array[randomIndex];
+  return items[randomIndex];
 };
 
 const getRandomIntegerNumber = (min, max) => {
@@ -29,31 +27,31 @@ const getRandomIntegerNumber = (min, max) => {
 // Генерируем дату и время от текущего +/- 8
 const getRandomDate = () => {
   const targetDate = new Date();
-  const sign = Math.random() > 0.5 ? 1 : -1;
-  const diffValue = sign * getRandomIntegerNumber(0, 8);
+  const sign = getRandomBooleanValue() ? 1 : -1;
+  const diffValue = sign * getRandomIntegerNumber(0, DAYS_VALUE);
 
   targetDate.setDate(targetDate.getDate() + diffValue);
-  targetDate.setHours(23);
+  targetDate.setHours(HOURS_VALUE);
 
   return targetDate;
 };
 
 const generateRepeatingDays = () => {
   return Object.assign({}, DefaultRepeatingDays, {
-    "mo": Math.random() > 0.5,
+    'mo': getRandomBooleanValue(),
   });
 };
 
 const generateTask = () => {
-  const dueDate = Math.random() > 0.5 ? null : getRandomDate();
+  const dueDate = getRandomBooleanValue() ? null : getRandomDate();
 
   return {
-    description: getRandomArrayItem(DescriptionItems),
+    description: getRandomItem(DESCRIPTION_ITEMS),
     dueDate: dueDate,
     repeatingDays: dueDate ? DefaultRepeatingDays : generateRepeatingDays(),
-    color: getRandomArrayItem(COLORS),
-    isArchive: Math.random() > 0.5,
-    isFavorite: Math.random() > 0.5,
+    color: getRandomItem(COLORS),
+    isArchive: getRandomBooleanValue(),
+    isFavorite: getRandomBooleanValue(),
   };
 };
 

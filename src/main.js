@@ -27,7 +27,7 @@ const render = (container, template, place = `beforeend`) => {
 // Генерируем задачи
 const tasks = generateTasks(TASK_COUNT);
 const filters = generateFilters(tasks);
-
+console.log(tasks);
 render(siteHeaderElement, createMenuTemplate());
 render(siteMainElement, createFilterTemplate(filters));
 render(siteMainElement, createBoardTemplate());

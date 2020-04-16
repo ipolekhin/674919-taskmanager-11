@@ -9,4 +9,8 @@ const formatTime = (date) => {
   return `${hours}:${minutes}`;
 };
 
-export {formatTime};
+const getRandomBooleanValue = ()=> {
+  return Math.random() > 0.5;
+};
+
+export {formatTime, getRandomBooleanValue};
