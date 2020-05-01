@@ -1,4 +1,4 @@
-import {COLORS, DAYS} from "../const";
+import {COLORS, DAY_NAMES} from "../const";
 import {blockForTaskTemplates} from "../utils";
 
 const createColorsMarkup = (colors, currentColor) => {
@@ -50,7 +50,7 @@ const createTaskEditTemplate = (task) => {
   const isRepeatingTask = Object.values(repeatingDays).some((element) => element);
   const repeatClass = isRepeatingTask ? `card--repeat` : ``;
   const colorsMarkup = createColorsMarkup(COLORS, color);
-  const repeatingDaysMarkup = createRepeatingDaysMarkup(DAYS, repeatingDays);
+  const repeatingDaysMarkup = createRepeatingDaysMarkup(DAY_NAMES, repeatingDays);
 
   return (
     `<article class="card card--edit card--${color} ${repeatClass} ${deadlineClass}">

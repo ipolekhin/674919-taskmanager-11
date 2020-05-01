@@ -43,7 +43,6 @@ const calculateFilterStatistics = (tasks) => {
 
 const generateFilters = (tasks) => {
   const valuesOfFilterStatistics = calculateFilterStatistics(tasks);
-  console.log(valuesOfFilterStatistics);
 
   return FILTER_NAMES.map((filterName) => {
     return {
