@@ -1,5 +1,17 @@
 import {MONTH_NAMES} from "./const";
 
+const blockForTaskTemplates = (dueDate) => {
+  const isExpired = dueDate instanceof Date && dueDate < Date.now();
+  const isDateShowing = !!dueDate;
+
+  return {
+    isDateShowing: !!dueDate,
+    date: isDateShowing ? `${dueDate.getDate()} ${MONTH_NAMES[dueDate.getMonth()]}` : ``,
+    time: isDateShowing ? formatTime(dueDate) : ``,
+    deadlineClass: isExpired ? `card--deadline` : ``,
+  };
+};
+
 const castTimeFormat = (value) => {
   return value.toString().padStart(2, `0`);
 };
@@ -13,16 +25,14 @@ const formatTime = (time) => {
 
 const getRandomBooleanValue = () => Math.random() > 0.5;
 
-const blockForTaskTemplates = (dueDate) => {
-  const isExpired = dueDate instanceof Date && dueDate < Date.now();
-  const isDateShowing = !!dueDate;
-
-  return {
-    isDateShowing: !!dueDate,
-    date: isDateShowing ? `${dueDate.getDate()} ${MONTH_NAMES[dueDate.getMonth()]}` : ``,
-    time: isDateShowing ? formatTime(dueDate) : ``,
-    deadlineClass: isExpired ? `card--deadline` : ``,
-  };
+// Функция для рендеринга компонентов на страницу.
+const render = (container, template, place = `beforeend`) => {
+  container.insertAdjacentHTML(place, template);
 };
 
-export {formatTime, getRandomBooleanValue, blockForTaskTemplates};
+export {
+  blockForTaskTemplates,
+  formatTime,
+  getRandomBooleanValue,
+  render,
+};

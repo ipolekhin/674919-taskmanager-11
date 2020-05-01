@@ -7,6 +7,7 @@ import {createTaskTemplate} from "./components/task.js";
 import {createTaskEditTemplate} from "./components/task-edit.js";
 import {generateFilters} from "./mock/filter";
 import {generateTasks} from "./mock/task";
+import {render} from "./utils";
 
 const FIRST = 1;
 const TASK_COUNT = 20;
@@ -21,11 +22,6 @@ let showingTasksCount = SHOWING_TASKS_COUNT_ON_START;
 // Генерируем задачи
 const tasks = generateTasks(TASK_COUNT);
 const filters = generateFilters(tasks);
-
-// Функция для рендеринга компонентов на страницу.
-const render = (container, template, place = `beforeend`) => {
-  container.insertAdjacentHTML(place, template);
-};
 
 render(siteHeaderElement, createMenuTemplate());
 render(siteMainElement, createFilterTemplate(filters));
