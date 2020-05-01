@@ -82,3 +82,27 @@ export const MONTH_NAMES = [
   `November`,
   `December`,
 ];
+
+export const TagsSortType = {
+  DEFAULT: `default`,
+  DATE_UP: `date-up`,
+  DATE_DOWN: `date-down`,
+};
+
+export const TAGS_SORT_NAME = [
+  TagsSortType.DEFAULT,
+  TagsSortType.DATE_UP,
+  TagsSortType.DATE_DOWN,
+];
+
+export const SortType = {
+  DEFAULT: `DEFAULT`,
+  DATE_UP: `DATE up`,
+  DATE_DOWN: `DATE down`,
+};
+
+export const SORT_NAMES = [
+  SortType.DEFAULT,
+  SortType.DATE_UP,
+  SortType.DATE_DOWN,
+];
