@@ -44,6 +44,30 @@ export const FILTER_NAMES = [
   FilterType.ARCHIVE,
 ];
 
+export const TagsMenuType = {
+  NEW_TASK: `new-task`,
+  TASK: `task`,
+  STATISTIC: `statistic`,
+};
+
+export const TAGS_MENU_NAME = [
+  TagsMenuType.NEW_TASK,
+  TagsMenuType.TASK,
+  TagsMenuType.STATISTIC,
+];
+
+export const MenuType = {
+  NEW_TASK: `+ ADD NEW TASK`,
+  TASK: `TASKS`,
+  STATISTIC: `STATISTICS`,
+};
+
+export const MENU_NAMES = [
+  MenuType.NEW_TASK,
+  MenuType.TASK,
+  MenuType.STATISTIC,
+];
+
 export const MONTH_NAMES = [
   `January`,
   `February`,
