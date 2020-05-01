@@ -11,6 +11,7 @@ const createFilterMarkup = (filter, isChecked) => {
       ${isChecked ? `checked` : ``}
       ${!count ? `disabled` : ``}
     />
+
     <label for="filter__${name}" class="filter__label">
       ${name} <span class="filter__${name}-count">${count}</span>
     </label>`
@@ -18,7 +19,9 @@ const createFilterMarkup = (filter, isChecked) => {
 };
 
 const createFilterTemplate = (filters) => {
-  const filterMarkup = filters.map((filter, i) => createFilterMarkup(filter, i === 0)).join(`\n`);
+  const filterMarkup = filters
+    .map((filter, i) => createFilterMarkup(filter, i === 0))
+    .join(`\n`);
 
   return (
     `<section class="main__filter filter container">
