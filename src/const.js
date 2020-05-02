@@ -1,3 +1,15 @@
+export const ButtonType = {
+  EDIT: `edit`,
+  ARCHIVE: `archive`,
+  FAVORITES: `favorites`,
+};
+
+export const BUTTON_NAMES = [
+  ButtonType.EDIT,
+  ButtonType.ARCHIVE,
+  ButtonType.FAVORITES,
+];
+
 export const COLORS = [`black`, `yellow`, `blue`, `green`, `pink`];
 
 export const DaysType = {
