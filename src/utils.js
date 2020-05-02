@@ -25,7 +25,7 @@ const formatTime = (time) => {
 
 const getRandomBooleanValue = () => Math.random() > 0.5;
 
-// Функция создания эелементов
+// Функция создания DOM эелемента
 const createElement = (template) => {
   const newElement = document.createElement(`div`);
   newElement.innerHTML = template;

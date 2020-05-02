@@ -3,13 +3,16 @@ import {blockForTaskTemplates, createElement} from "../utils.js";
 import {BUTTON_NAMES, ButtonType} from "../const";
 
 const createButtonsMarkup = (isArchive, isFavorite) => {
+  const archiveClass =  name === ButtonType.ARCHIVE && !isArchive ? `card__btn--disabled` : ``;
+  const favoritesClass =  name === ButtonType.FAVORITES && !isFavorite ? `card__btn--disabled` : ``;
+
   return BUTTON_NAMES
     .map((name) => {
       return (
         `<button type="button"
           class="card__btn card__btn--${name}
-          ${name === ButtonType.ARCHIVE && !isArchive ? `card__btn--disabled` : ``}
-          ${name === ButtonType.FAVORITES && !isFavorite ? `card__btn--disabled` : ``}">
+          ${archiveClass}
+          ${favoritesClass}">
           ${name}
         </button>`
       );
@@ -62,4 +65,31 @@ const createTaskTemplate = (task) => {
   );
 };
 
-export {createTaskTemplate};
+// Компонент карточки задач
+export default class Task {
+  // Объявляем конструктор
+  constructor(task) {
+    // Объект записываем в приватное свойство
+    this._task = task;
+    this._element = null;
+  }
+
+  // Метод возвращает DOM элемент
+  getTemplate() {
+    // this._task используем для создания шаблона
+    return createTaskTemplate(this._task);
+  }
+
+  // Метод удаляет DOM элемент (очистка ресурсов в памяти)
+  getElement() {
+    if (!this._element) {
+     this._element = createElement(this.getTemplate());
+    }
+
+    return this._element;
+  }
+
+  removeElement() {
+    this._element = null;
+  }
+};
