@@ -1,12 +1,12 @@
 import {createElement} from "../utils";
 
-const createBoardTemplate = () => {
+const createTasksTemplate = () => {
   return (
-    `<section class="board container"></section>`
+    `<div class="board__tasks"></div>`
   );
 };
 
-export default class Board {
+export default class Tasks {
   // Объявляем конструктор
   constructor() {
     this._element = null;
@@ -15,7 +15,7 @@ export default class Board {
   // Метод возвращает DOM элемент
   getTemplate() {
     // this._task используем для создания шаблона
-    return createBoardTemplate();
+    return createTasksTemplate();
   }
 
   // Метод удаляет DOM элемент (очистка ресурсов в памяти)

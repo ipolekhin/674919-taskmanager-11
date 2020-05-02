@@ -2,7 +2,7 @@ import {createBoardTemplate} from "./components/board.js";
 import {createFilterTemplate} from "./components/filter.js";
 import {createLoadMoreButtonTemplate} from "./components/load-more-button.js";
 import {createMenuTemplate} from "./components/site-menu.js";
-import {createSortingTemplate} from "./components/sorting";
+import {createSortingTemplate} from "./components/sort";
 import {createTaskTemplate} from "./components/task.js";
 import {createTaskEditTemplate} from "./components/task-edit.js";
 import {generateFilters} from "./mock/filter";

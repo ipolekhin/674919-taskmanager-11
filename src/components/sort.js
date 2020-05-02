@@ -16,7 +16,7 @@ const createSortMarkup = () => {
   ).join(`\n`);
 };
 
-const createSortingTemplate = () => {
+const createSortTemplate = () => {
   const sortMarkup = createSortMarkup();
 
   return (
@@ -26,7 +26,7 @@ const createSortingTemplate = () => {
   );
 };
 
-export default class Sorting {
+export default class Sort {
   // Объявляем конструктор
   constructor() {
     this._element = null;
@@ -35,7 +35,7 @@ export default class Sorting {
   // Метод возвращает DOM элемент
   getTemplate() {
     // this._task используем для создания шаблона
-    return createSortingTemplate();
+    return createSortTemplate();
   }
 
   // Метод удаляет DOM элемент (очистка ресурсов в памяти)
