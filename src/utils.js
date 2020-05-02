@@ -1,5 +1,11 @@
 import {MONTH_NAMES} from "./const";
 
+export const RenderPosition = {
+  AFTERBEGIN: `afterbegin`,
+  BEFOREEND: `beforeend`,
+  AFTEREND: `afterEnd`,
+};
+
 const blockForTaskTemplates = (dueDate) => {
   const isExpired = dueDate instanceof Date && dueDate < Date.now();
   const isDateShowing = !!dueDate;
@@ -34,8 +40,17 @@ const createElement = (template) => {
 };
 
 // Функция для рендеринга компонентов на страницу.
-const render = (container, template, place = `beforeend`) => {
-  container.insertAdjacentHTML(place, template);
+const render = (container, element, place) => {
+  switch (place) {
+    case RenderPosition.AFTERBEGIN:
+      container.prepend(element);
+      break;
+    case RenderPosition.AFTEREND:
+      container.after(element);
+      break;
+    default:
+      container.append(element);
+  }
 };
 
 export {

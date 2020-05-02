@@ -7,7 +7,7 @@ import {createTaskTemplate} from "./components/task.js";
 import {createTaskEditTemplate} from "./components/task-edit.js";
 import {generateFilters} from "./mock/filter";
 import {generateTasks} from "./mock/task";
-import {render} from "./utils";
+import {render, RenderPosition} from "./utils";
 
 const FIRST = 1;
 const TASK_COUNT = 20;
