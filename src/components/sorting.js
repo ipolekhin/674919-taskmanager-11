@@ -10,7 +10,7 @@ const createSortMarkup = () => {
             data-sort-type="${TAGS_SORT_NAME[index]}">
               SORT BY ${name}
           </a>`
-        )
+        );
       })
   ).join(`\n`);
 };

@@ -16,7 +16,7 @@ const createMenuMarkup = () => {
           ? `control__label--${TAGS_MENU_NAME[index]}` : ``}">
             ${name}
         </label>`
-      )
+      );
     })
   ).join(`\n`);
 };

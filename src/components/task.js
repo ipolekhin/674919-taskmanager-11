@@ -3,12 +3,12 @@ import {BUTTON_NAMES, ButtonType} from "../const";
 
 const createButtonsMarkup = (isArchive, isFavorite) => {
   return BUTTON_NAMES
-    .map((name, index) => {
+    .map((name) => {
       return (
         `<button type="button"
           class="card__btn card__btn--${name}
-          ${name === ButtonType.ARCHIVE && !isArchive ? `card__btn--disabled` : ``
-          || name === ButtonType.FAVORITES && !isFavorite ? `card__btn--disabled` : ``}">
+          ${name === ButtonType.ARCHIVE && !isArchive ? `card__btn--disabled` : ``}
+          ${name === ButtonType.FAVORITES && !isFavorite ? `card__btn--disabled` : ``}">
           ${name}
         </button>`
       );
