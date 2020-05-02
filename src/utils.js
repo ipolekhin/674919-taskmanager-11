@@ -25,6 +25,14 @@ const formatTime = (time) => {
 
 const getRandomBooleanValue = () => Math.random() > 0.5;
 
+// Функция создания эелементов
+const createElement = (template) => {
+  const newElement = document.createElement(`div`);
+  newElement.innerHTML = template;
+
+  return newElement.firstChild;
+};
+
 // Функция для рендеринга компонентов на страницу.
 const render = (container, template, place = `beforeend`) => {
   container.insertAdjacentHTML(place, template);
@@ -32,6 +40,7 @@ const render = (container, template, place = `beforeend`) => {
 
 export {
   blockForTaskTemplates,
+  createElement,
   formatTime,
   getRandomBooleanValue,
   render,

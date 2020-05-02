@@ -1,4 +1,5 @@
-import {blockForTaskTemplates} from "../utils.js";
+// Импортируем функцию createElement создания эелементов
+import {blockForTaskTemplates, createElement} from "../utils.js";
 import {BUTTON_NAMES, ButtonType} from "../const";
 
 const createButtonsMarkup = (isArchive, isFavorite) => {
@@ -16,6 +17,7 @@ const createButtonsMarkup = (isArchive, isFavorite) => {
     .join(`\n`);
 };
 
+// Функция вовращает html разметку нашей карточки задач
 const createTaskTemplate = (task) => {
   const {description, dueDate, color, repeatingDays, isArchive, isFavorite} = task;
   const {isDateShowing, date, time, deadlineClass} = blockForTaskTemplates(dueDate);
