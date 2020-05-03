@@ -22,6 +22,14 @@ const castTimeFormat = (value) => {
   return value.toString().padStart(2, `0`);
 };
 
+// Функция создания DOM эелемента
+const createElement = (template) => {
+  const newElement = document.createElement(`div`);
+  newElement.innerHTML = template;
+
+  return newElement.firstChild;
+};
+
 const formatTime = (time) => {
   const hours = castTimeFormat(time.getHours() % 24);
   const minutes = castTimeFormat(time.getMinutes());
@@ -30,14 +38,6 @@ const formatTime = (time) => {
 };
 
 const getRandomBooleanValue = () => Math.random() > 0.5;
-
-// Функция создания DOM эелемента
-const createElement = (template) => {
-  const newElement = document.createElement(`div`);
-  newElement.innerHTML = template;
-
-  return newElement.firstChild;
-};
 
 // Функция для рендеринга компонентов на страницу.
 const render = (container, element, place) => {

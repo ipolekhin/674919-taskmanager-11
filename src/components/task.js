@@ -3,8 +3,8 @@ import {blockForTaskTemplates, createElement} from "../utils.js";
 import {BUTTON_NAMES, ButtonType} from "../const";
 
 const createButtonsMarkup = (isArchive, isFavorite) => {
-  const archiveClass =  name === ButtonType.ARCHIVE && !isArchive ? `card__btn--disabled` : ``;
-  const favoritesClass =  name === ButtonType.FAVORITES && !isFavorite ? `card__btn--disabled` : ``;
+  const archiveClass = name === ButtonType.ARCHIVE && !isArchive ? `card__btn--disabled` : ``;
+  const favoritesClass = name === ButtonType.FAVORITES && !isFavorite ? `card__btn--disabled` : ``;
 
   return BUTTON_NAMES
     .map((name) => {
@@ -83,7 +83,7 @@ export default class Task {
   // Метод удаляет DOM элемент (очистка ресурсов в памяти)
   getElement() {
     if (!this._element) {
-     this._element = createElement(this.getTemplate());
+      this._element = createElement(this.getTemplate());
     }
 
     return this._element;
@@ -92,4 +92,4 @@ export default class Task {
   removeElement() {
     this._element = null;
   }
-};
+}
