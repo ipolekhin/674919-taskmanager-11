@@ -14,6 +14,12 @@ const TASK_COUNT = 20;
 const SHOWING_TASKS_COUNT_ON_START = 8;
 const SHOWING_TASKS_COUNT_BY_BUTTON = 8;
 
+const collectTasks = (container, endCount, beginCount = 0) => {
+  return tasks
+    .slice(beginCount, endCount)
+    .map((task) => renderTask(container, task));
+};
+
 const renderTask = (taskListElement, task) => {
   const onEditButtonClick = () => {
     taskListElement.replaceChild(taskEditComponent.getElement(), taskComponent.getElement());
@@ -43,10 +49,7 @@ const renderBoard = (boardComponent, tasks) => {
 
   const taskListElement = boardComponent.getElement().querySelector(`.board__tasks`);
 
-  tasks.slice(0, showingTasksCount)
-    .forEach((task) => {
-      renderTask(taskListElement, task);
-    });
+  collectTasks(taskListElement, SHOWING_TASKS_COUNT_ON_START);
 
   const loadMoreButtonComponent = new LoadMoreButtonComponent();
   render(boardComponent.getElement(), loadMoreButtonComponent.getElement());
@@ -55,10 +58,7 @@ const renderBoard = (boardComponent, tasks) => {
     const prevTasksCount = showingTasksCount;
     showingTasksCount = showingTasksCount + SHOWING_TASKS_COUNT_BY_BUTTON;
 
-    tasks.slice(prevTasksCount, showingTasksCount)
-      .forEach((task) => {
-        renderTask(taskListElement, task);
-      });
+    collectTasks(taskListElement, showingTasksCount, prevTasksCount);
 
     if (showingTasksCount >= tasks.length) {
       loadMoreButtonComponent.getElement().remove();
@@ -79,5 +79,5 @@ render(siteHeaderElement, new SiteMenuComponent().getElement());
 render(siteMainElement, new FilterComponent(filters).getElement());
 
 const boardComponent = new BoardComponent();
-render(siteMainElement, boardComponent.getElement());
 renderBoard(boardComponent, tasks);
+render(siteMainElement, boardComponent.getElement());

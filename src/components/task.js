@@ -3,11 +3,12 @@ import {blockForTaskTemplates, createElement} from "../utils.js";
 import {BUTTON_NAMES, ButtonType} from "../const";
 
 const createButtonsMarkup = (isArchive, isFavorite) => {
-  const archiveClass = name === ButtonType.ARCHIVE && !isArchive ? `card__btn--disabled` : ``;
-  const favoritesClass = name === ButtonType.FAVORITES && !isFavorite ? `card__btn--disabled` : ``;
 
   return BUTTON_NAMES
     .map((name) => {
+      const archiveClass = name === ButtonType.ARCHIVE && !isArchive ? `card__btn--disabled` : ``;
+      const favoritesClass = name === ButtonType.FAVORITES && !isFavorite ? `card__btn--disabled` : ``;
+
       return (
         `<button type="button"
           class="card__btn card__btn--${name}
