@@ -1,17 +1,10 @@
 import {MONTH_NAMES} from "./const";
 
-const castTimeFormat = (value) => {
-  return value.toString().padStart(2, `0`);
+export const RenderPosition = {
+  AFTERBEGIN: `afterbegin`,
+  BEFOREEND: `beforeend`,
+  AFTEREND: `afterEnd`,
 };
-
-const formatTime = (time) => {
-  const hours = castTimeFormat(time.getHours() % 24);
-  const minutes = castTimeFormat(time.getMinutes());
-
-  return `${hours}:${minutes}`;
-};
-
-const getRandomBooleanValue = () => Math.random() > 0.5;
 
 const blockForTaskTemplates = (dueDate) => {
   const isExpired = dueDate instanceof Date && dueDate < Date.now();
@@ -25,4 +18,45 @@ const blockForTaskTemplates = (dueDate) => {
   };
 };
 
-export {formatTime, getRandomBooleanValue, blockForTaskTemplates};
+const castTimeFormat = (value) => {
+  return value.toString().padStart(2, `0`);
+};
+
+// Функция создания DOM эелемента
+const createElement = (template) => {
+  const newElement = document.createElement(`div`);
+  newElement.innerHTML = template;
+
+  return newElement.firstElementChild;
+};
+
+const formatTime = (time) => {
+  const hours = castTimeFormat(time.getHours() % 24);
+  const minutes = castTimeFormat(time.getMinutes());
+
+  return `${hours}:${minutes}`;
+};
+
+const getRandomBooleanValue = () => Math.random() > 0.5;
+
+// Функция для рендеринга компонентов на страницу.
+const render = (container, element, place) => {
+  switch (place) {
+    case RenderPosition.AFTERBEGIN:
+      container.prepend(element);
+      break;
+    case RenderPosition.AFTEREND:
+      container.after(element);
+      break;
+    default:
+      container.append(element);
+  }
+};
+
+export {
+  blockForTaskTemplates,
+  createElement,
+  formatTime,
+  getRandomBooleanValue,
+  render,
+};

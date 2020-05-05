@@ -1,12 +1,12 @@
 import {createElement} from "../utils";
 
-const createLoadMoreButtonTemplate = () => {
+const createTasksTemplate = () => {
   return (
-    `<button class="load-more" type="button">load more</button>`
+    `<div class="board__tasks"></div>`
   );
 };
 
-export default class LoadMoreButton {
+export default class Tasks {
   // Объявляем конструктор
   constructor() {
     this._element = null;
@@ -15,7 +15,7 @@ export default class LoadMoreButton {
   // Метод возвращает DOM элемент
   getTemplate() {
     // this._task используем для создания шаблона
-    return createLoadMoreButtonTemplate();
+    return createTasksTemplate();
   }
 
   // Метод удаляет DOM элемент (очистка ресурсов в памяти)

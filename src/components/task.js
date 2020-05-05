@@ -1,29 +1,39 @@
-import {blockForTaskTemplates} from "../utils.js";
+// Импортируем функцию createElement создания эелементов
+import {blockForTaskTemplates, createElement} from "../utils.js";
+import {BUTTON_NAMES, ButtonType} from "../const";
 
+const createButtonsMarkup = (isArchive, isFavorite) => {
+
+  return BUTTON_NAMES
+    .map((name) => {
+      const archiveClass = name === ButtonType.ARCHIVE && !isArchive ? `card__btn--disabled` : ``;
+      const favoritesClass = name === ButtonType.FAVORITES && !isFavorite ? `card__btn--disabled` : ``;
+
+      return (
+        `<button type="button"
+          class="card__btn card__btn--${name}
+          ${archiveClass}
+          ${favoritesClass}">
+          ${name}
+        </button>`
+      );
+    })
+    .join(`\n`);
+};
+
+// Функция вовращает html разметку нашей карточки задач
 const createTaskTemplate = (task) => {
   const {description, dueDate, color, repeatingDays, isArchive, isFavorite} = task;
   const {isDateShowing, date, time, deadlineClass} = blockForTaskTemplates(dueDate);
   const repeatClass = Object.values(repeatingDays).some((element) => element) ? `card--repeat` : ``;
-  const archiveButtonInactiveClass = isArchive ? `` : `card__btn--disabled`;
-  const favoriteButtonInactiveClass = isFavorite ? `` : `card__btn--disabled`;
+  const buttonMarkup = createButtonsMarkup(isArchive, isFavorite);
 
   return (
     `<article class="card card--${color} ${repeatClass} ${deadlineClass}">
       <div class="card__form">
         <div class="card__inner">
           <div class="card__control">
-            <button type="button" class="card__btn card__btn--edit">
-              edit
-            </button>
-            <button type="button" class="card__btn card__btn--archive ${archiveButtonInactiveClass}">
-              archive
-            </button>
-            <button
-              type="button"
-              class="card__btn card__btn--favorites ${favoriteButtonInactiveClass}"
-            >
-              favorites
-            </button>
+            ${buttonMarkup}
           </div>
 
           <div class="card__color-bar">
@@ -56,4 +66,31 @@ const createTaskTemplate = (task) => {
   );
 };
 
-export {createTaskTemplate};
+// Компонент карточки задач
+export default class Task {
+  // Объявляем конструктор
+  constructor(task) {
+    // Объект записываем в приватное свойство
+    this._task = task;
+    this._element = null;
+  }
+
+  // Метод возвращает DOM элемент
+  getTemplate() {
+    // this._task используем для создания шаблона
+    return createTaskTemplate(this._task);
+  }
+
+  // Метод удаляет DOM элемент (очистка ресурсов в памяти)
+  getElement() {
+    if (!this._element) {
+      this._element = createElement(this.getTemplate());
+    }
+
+    return this._element;
+  }
+
+  removeElement() {
+    this._element = null;
+  }
+}

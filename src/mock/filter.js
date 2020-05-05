@@ -1,40 +1,44 @@
-import {FILTER_NAMES} from "../const";
+import {FILTER_NAMES, FilterType} from "../const";
 
 // Функция считатет статиститку фильтра
 const calculateFilterStatistics = (tasks) => {
-  const valuesOfFilterStatistics = {
-    'all': 0,
-    'overdue': 0,
-    'today': 0,
-    'favorites': 0,
-    'repeating': 0,
-    'archive': 0,
-  };
   const date = new Date();
 
-  tasks.forEach((task) => {
-    const {dueDate, repeatingDays, isArchive, isFavorite} = task;
+  return tasks.reduce((result, {dueDate, repeatingDays, isArchive, isFavorite}) => {
     const isRepeatingTask = Object.values(repeatingDays).some((element) => element);
 
-    valuesOfFilterStatistics[`all`]++;
+    result[FilterType.ALL]++;
+
     if (dueDate instanceof Date && dueDate < date) {
-      valuesOfFilterStatistics[`overdue`]++;
+      result[FilterType.OVERDUE]++;
     }
+
     if (dueDate instanceof Date && dueDate.getDate() === date.getDate()) {
-      valuesOfFilterStatistics[`today`]++;
+      result[FilterType.TODAY]++;
     }
+
     if (isFavorite) {
-      valuesOfFilterStatistics[`favorites`]++;
+      result[FilterType.FAVORITES]++;
     }
+
     if (isRepeatingTask) {
-      valuesOfFilterStatistics[`repeating`]++;
+      result[FilterType.REPEATING]++;
     }
+
     if (isArchive) {
-      valuesOfFilterStatistics[`all`]--;
-      valuesOfFilterStatistics[`archive`]++;
+      result[FilterType.ALL]--;
+      result[FilterType.ARCHIVE]++;
     }
+
+    return result;
+  }, {
+    [FilterType.ALL]: 0,
+    [FilterType.OVERDUE]: 0,
+    [FilterType.TODAY]: 0,
+    [FilterType.FAVORITES]: 0,
+    [FilterType.REPEATING]: 0,
+    [FilterType.ARCHIVE]: 0,
   });
-  return valuesOfFilterStatistics;
 };
 
 const generateFilters = (tasks) => {
