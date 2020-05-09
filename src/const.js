@@ -56,17 +56,10 @@ export const FILTER_NAMES = [
   FilterType.ARCHIVE,
 ];
 
-export const TagsMenuType = {
-  NEW_TASK: `new-task`,
-  TASK: `task`,
-  STATISTIC: `statistic`,
+export const Keys = {
+  ESCAPE: `Escape`,
+  ESC: `Esc`,
 };
-
-export const TAGS_MENU_NAME = [
-  TagsMenuType.NEW_TASK,
-  TagsMenuType.TASK,
-  TagsMenuType.STATISTIC,
-];
 
 export const MenuType = {
   NEW_TASK: `+ ADD NEW TASK`,
@@ -95,6 +88,18 @@ export const MONTH_NAMES = [
   `December`,
 ];
 
+export const SortType = {
+  DEFAULT: `DEFAULT`,
+  DATE_UP: `DATE up`,
+  DATE_DOWN: `DATE down`,
+};
+
+export const SORT_NAMES = [
+  SortType.DEFAULT,
+  SortType.DATE_UP,
+  SortType.DATE_DOWN,
+];
+
 export const TagsSortType = {
   DEFAULT: `default`,
   DATE_UP: `date-up`,
@@ -107,14 +112,14 @@ export const TAGS_SORT_NAME = [
   TagsSortType.DATE_DOWN,
 ];
 
-export const SortType = {
-  DEFAULT: `DEFAULT`,
-  DATE_UP: `DATE up`,
-  DATE_DOWN: `DATE down`,
+export const TagsMenuType = {
+  NEW_TASK: `new-task`,
+  TASK: `task`,
+  STATISTIC: `statistic`,
 };
 
-export const SORT_NAMES = [
-  SortType.DEFAULT,
-  SortType.DATE_UP,
-  SortType.DATE_DOWN,
+export const TAGS_MENU_NAME = [
+  TagsMenuType.NEW_TASK,
+  TagsMenuType.TASK,
+  TagsMenuType.STATISTIC,
 ];
