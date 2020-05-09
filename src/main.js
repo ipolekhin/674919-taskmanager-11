@@ -1,11 +1,12 @@
 import BoardComponent from "./components/board.js";
 import FilterComponent from "./components/filter.js";
 import LoadMoreButtonComponent from "./components/load-more-button.js";
+import NoTasksComponent from "./components/no-tasks.js";
+import SiteMenuComponent from "./components/site-menu.js";
+import SortComponent from "./components/sort";
 import TaskEditComponent from "./components/task-edit.js";
 import TaskComponent from "./components/task.js";
 import TasksComponent from "./components/tasks.js";
-import SiteMenuComponent from "./components/site-menu.js";
-import SortComponent from "./components/sort";
 import {generateFilters} from "./mock/filter";
 import {generateTasks} from "./mock/task";
 import {render} from "./utils";
@@ -30,6 +31,7 @@ const renderTask = (taskListElement, task) => {
     taskListElement.replaceChild(taskComponent.getElement(), taskEditComponent.getElement());
   };
 
+  // 4.2.1 обработчик нажатия клавиши «Esc», который будет заменять форму редактирования на карточку задачи
   const onEscKeyDown = (event) => {
     const isEscapeKey = event.key === Keys.ESC || event.key === Keys.ESCAPE;
 
@@ -59,6 +61,14 @@ const renderTask = (taskListElement, task) => {
 
 const renderBoard = (boardComponent, tasks) => {
   let showingTasksCount = SHOWING_TASKS_COUNT_ON_START;
+  const isAllTasksArchived = tasks.every((task) => task.isArchive);
+
+  // 4.2.2 Сообщение о том, что все задачи выполнены, если таковых нет или они все в архиве.
+  if (isAllTasksArchived) {
+    render(boardComponent.getElement(), new NoTasksComponent().getElement());
+
+    return;
+  }
 
   render(boardComponent.getElement(), new SortComponent().getElement());
   render(boardComponent.getElement(), new TasksComponent().getElement());
