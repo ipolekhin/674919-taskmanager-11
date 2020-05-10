@@ -11,7 +11,7 @@ const createElement = (template) => {
   return newElement.firstElementChild;
 };
 
-export const remove = (element) => {
+const remove = (element) => {
   element.remove();
 };
 
@@ -29,7 +29,7 @@ const render = (container, element, place) => {
   }
 };
 
-export const replace = (parent, newElement, oldElement) => {
+const replace = (parent, newElement, oldElement) => {
   parent.replaceChild(newElement, oldElement);
 };
 
