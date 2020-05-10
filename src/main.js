@@ -19,7 +19,7 @@ const SHOWING_TASKS_COUNT_BY_BUTTON = 8;
 const collectTasks = (container, endCount, beginCount = 0) => {
   return tasks
     .slice(beginCount, endCount)
-    .map((task) => renderTask(container, task));
+    .forEach((task) => renderTask(container, task));
 };
 
 const renderTask = (taskListElement, task) => {
