@@ -9,7 +9,7 @@ import TaskComponent from "./components/task.js";
 import TasksComponent from "./components/tasks.js";
 import {generateFilters} from "./mock/filter";
 import {generateTasks} from "./mock/task";
-import {render} from "./utils";
+import {render} from "./utils/render";
 import {Keys} from "./const";
 
 const TASK_COUNT = 20;
