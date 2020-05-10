@@ -9,6 +9,10 @@ export default class AbstractComponent {
     this._element = null;
   }
 
+  getTemplate() {
+    throw new Error(`Can't instantiate AbstractComponent, only concrete one.`);
+  }
+
   getElement() {
     if (!this._element) {
       this._element = createElement(this.getTemplate());
