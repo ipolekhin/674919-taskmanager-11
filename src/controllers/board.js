@@ -49,7 +49,7 @@ const renderTask = (taskListElement, task) => {
     document.removeEventListener(`keydown`, onEscKeyDown);
   });
 
-  render(taskListElement, taskComponent );
+  render(taskListElement, taskComponent);
 };
 
 export default class BoardController {
