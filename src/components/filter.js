@@ -1,4 +1,4 @@
-import {createElement} from "../utils";
+import AbstractComponent from "./abstract-component";
 
 const createFilterMarkup = (filter, isChecked) => {
   // Деструктуризация
@@ -35,30 +35,16 @@ const createFilterTemplate = (filters) => {
 };
 
 // Компонент карточки задач
-export default class Filter {
-  // Объявляем конструктор
+export default class Filter extends AbstractComponent {
   constructor(filters) {
-    // Объект записываем в приватное свойство
+    super();
+
     this._filters = filters;
-    this._element = null;
   }
 
   // Метод возвращает DOM элемент
   getTemplate() {
     // this._task используем для создания шаблона
     return createFilterTemplate(this._filters);
-  }
-
-  // Метод удаляет DOM элемент (очистка ресурсов в памяти)
-  getElement() {
-    if (!this._element) {
-      this._element = createElement(this.getTemplate());
-    }
-
-    return this._element;
-  }
-
-  removeElement() {
-    this._element = null;
   }
 }

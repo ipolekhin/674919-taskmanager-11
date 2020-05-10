@@ -1,5 +1,5 @@
 import {SORT_NAMES, TAGS_SORT_NAME} from "../const";
-import {createElement} from "../utils";
+import AbstractComponent from "./abstract-component";
 
 const createSortMarkup = () => {
   return (SORT_NAMES
@@ -26,28 +26,8 @@ const createSortTemplate = () => {
   );
 };
 
-export default class Sort {
-  // Объявляем конструктор
-  constructor() {
-    this._element = null;
-  }
-
-  // Метод возвращает DOM элемент
+export default class Sort extends AbstractComponent {
   getTemplate() {
-    // this._task используем для создания шаблона
     return createSortTemplate();
-  }
-
-  // Метод удаляет DOM элемент (очистка ресурсов в памяти)
-  getElement() {
-    if (!this._element) {
-      this._element = createElement(this.getTemplate());
-    }
-
-    return this._element;
-  }
-
-  removeElement() {
-    this._element = null;
   }
 }

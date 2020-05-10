@@ -1,10 +1,4 @@
-import {MONTH_NAMES} from "./const";
-
-export const RenderPosition = {
-  AFTERBEGIN: `afterbegin`,
-  BEFOREEND: `beforeend`,
-  AFTEREND: `afterEnd`,
-};
+import {MONTH_NAMES} from "../const";
 
 const blockForTaskTemplates = (dueDate) => {
   const isExpired = dueDate instanceof Date && dueDate < Date.now();
@@ -22,14 +16,6 @@ const castTimeFormat = (value) => {
   return value.toString().padStart(2, `0`);
 };
 
-// Функция создания DOM эелемента
-const createElement = (template) => {
-  const newElement = document.createElement(`div`);
-  newElement.innerHTML = template;
-
-  return newElement.firstElementChild;
-};
-
 const formatTime = (time) => {
   const hours = castTimeFormat(time.getHours() % 24);
   const minutes = castTimeFormat(time.getMinutes());
@@ -39,24 +25,8 @@ const formatTime = (time) => {
 
 const getRandomBooleanValue = () => Math.random() > 0.5;
 
-// Функция для рендеринга компонентов на страницу.
-const render = (container, element, place) => {
-  switch (place) {
-    case RenderPosition.AFTERBEGIN:
-      container.prepend(element);
-      break;
-    case RenderPosition.AFTEREND:
-      container.after(element);
-      break;
-    default:
-      container.append(element);
-  }
-};
-
 export {
   blockForTaskTemplates,
-  createElement,
   formatTime,
   getRandomBooleanValue,
-  render,
 };
