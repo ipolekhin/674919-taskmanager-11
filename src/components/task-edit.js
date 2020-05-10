@@ -1,5 +1,5 @@
 import {COLORS, DAY_NAMES} from "../const";
-import {blockForTaskTemplates, createElement} from "../utils";
+import {blockForTaskTemplates} from "../utils";
 import AbstractComponent from "./abstract-component";
 
 const createColorsMarkup = (colors, currentColor) => {
