@@ -16,16 +16,16 @@ const remove = (element) => {
 };
 
 // Функция для рендеринга компонентов на страницу.
-const render = (container, element, place) => {
+const render = (container, component, place) => {
   switch (place) {
     case RenderPosition.AFTERBEGIN:
-      container.prepend(element);
+      container.prepend(component.getElement());
       break;
     case RenderPosition.AFTEREND:
-      container.after(element);
+      container.after(component.getElement());
       break;
     default:
-      container.append(element);
+      container.append(component.getElement());
   }
 };
 

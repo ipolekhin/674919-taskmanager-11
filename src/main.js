@@ -56,7 +56,7 @@ const renderTask = (taskListElement, task) => {
     document.removeEventListener(`keydown`, onEscKeyDown);
   });
 
-  render(taskListElement, taskComponent.getElement());
+  render(taskListElement, taskComponent );
 };
 
 const renderBoard = (boardComponent, tasks) => {
@@ -65,20 +65,20 @@ const renderBoard = (boardComponent, tasks) => {
 
   // 4.2.2 Сообщение о том, что все задачи выполнены, если таковых нет или они все в архиве.
   if (isAllTasksArchived) {
-    render(boardComponent.getElement(), new NoTasksComponent().getElement());
+    render(boardComponent.getElement(), new NoTasksComponent());
 
     return;
   }
 
-  render(boardComponent.getElement(), new SortComponent().getElement());
-  render(boardComponent.getElement(), new TasksComponent().getElement());
+  render(boardComponent.getElement(), new SortComponent());
+  render(boardComponent.getElement(), new TasksComponent());
 
   const taskListElement = boardComponent.getElement().querySelector(`.board__tasks`);
 
   collectTasks(taskListElement, SHOWING_TASKS_COUNT_ON_START);
 
   const loadMoreButtonComponent = new LoadMoreButtonComponent();
-  render(boardComponent.getElement(), loadMoreButtonComponent.getElement());
+  render(boardComponent.getElement(), loadMoreButtonComponent);
 
   loadMoreButtonComponent.getElement().addEventListener(`click`, () => {
     const prevTasksCount = showingTasksCount;
@@ -101,9 +101,9 @@ const siteHeaderElement = siteMainElement.querySelector(`.main__control`);
 const tasks = generateTasks(TASK_COUNT);
 const filters = generateFilters(tasks);
 
-render(siteHeaderElement, new SiteMenuComponent().getElement());
-render(siteMainElement, new FilterComponent(filters).getElement());
+render(siteHeaderElement, new SiteMenuComponent());
+render(siteMainElement, new FilterComponent(filters));
 
 const boardComponent = new BoardComponent();
 renderBoard(boardComponent, tasks);
-render(siteMainElement, boardComponent.getElement());
+render(siteMainElement, boardComponent);
