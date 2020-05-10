@@ -1,6 +1,7 @@
 // Импортируем функцию createElement создания эелементов
 import {blockForTaskTemplates, createElement} from "../utils.js";
 import {BUTTON_NAMES, ButtonType} from "../const";
+import AbstractComponent from "./abstract-component";
 
 const createButtonsMarkup = (isArchive, isFavorite) => {
 
@@ -67,30 +68,16 @@ const createTaskTemplate = (task) => {
 };
 
 // Компонент карточки задач
-export default class Task {
-  // Объявляем конструктор
+export default class Task extends AbstractComponent {
   constructor(task) {
-    // Объект записываем в приватное свойство
+    super();
+    
     this._task = task;
-    this._element = null;
   }
 
   // Метод возвращает DOM элемент
   getTemplate() {
     // this._task используем для создания шаблона
     return createTaskTemplate(this._task);
-  }
-
-  // Метод удаляет DOM элемент (очистка ресурсов в памяти)
-  getElement() {
-    if (!this._element) {
-      this._element = createElement(this.getTemplate());
-    }
-
-    return this._element;
-  }
-
-  removeElement() {
-    this._element = null;
   }
 }
