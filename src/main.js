@@ -87,8 +87,7 @@ const renderBoard = (boardComponent, tasks) => {
     collectTasks(taskListElement, showingTasksCount, prevTasksCount);
 
     if (showingTasksCount >= tasks.length) {
-      remove(loadMoreButtonComponent.getElement());
-      loadMoreButtonComponent.removeElement();
+      remove(loadMoreButtonComponent);
     }
   });
 };

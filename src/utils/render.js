@@ -11,8 +11,9 @@ const createElement = (template) => {
   return newElement.firstElementChild;
 };
 
-const remove = (element) => {
-  element.remove();
+const remove = (component) => {
+  component.getElement().remove();
+  component.removeElement();
 };
 
 // Функция для рендеринга компонентов на страницу.
