@@ -1,4 +1,4 @@
-import {createElement} from "../utils";
+import AbstractComponent from "./abstract-component";
 
 const createTasksTemplate = () => {
   return (
@@ -6,28 +6,8 @@ const createTasksTemplate = () => {
   );
 };
 
-export default class Tasks {
-  // Объявляем конструктор
-  constructor() {
-    this._element = null;
-  }
-
-  // Метод возвращает DOM элемент
+export default class Tasks extends AbstractComponent {
   getTemplate() {
-    // this._task используем для создания шаблона
     return createTasksTemplate();
-  }
-
-  // Метод удаляет DOM элемент (очистка ресурсов в памяти)
-  getElement() {
-    if (!this._element) {
-      this._element = createElement(this.getTemplate());
-    }
-
-    return this._element;
-  }
-
-  removeElement() {
-    this._element = null;
   }
 }

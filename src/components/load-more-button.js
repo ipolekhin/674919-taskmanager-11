@@ -1,4 +1,4 @@
-import {createElement} from "../utils";
+import AbstractComponent from "./abstract-component";
 
 const createLoadMoreButtonTemplate = () => {
   return (
@@ -6,28 +6,8 @@ const createLoadMoreButtonTemplate = () => {
   );
 };
 
-export default class LoadMoreButton {
-  // Объявляем конструктор
-  constructor() {
-    this._element = null;
-  }
-
-  // Метод возвращает DOM элемент
+export default class LoadMoreButton extends AbstractComponent {
   getTemplate() {
-    // this._task используем для создания шаблона
     return createLoadMoreButtonTemplate();
-  }
-
-  // Метод удаляет DOM элемент (очистка ресурсов в памяти)
-  getElement() {
-    if (!this._element) {
-      this._element = createElement(this.getTemplate());
-    }
-
-    return this._element;
-  }
-
-  removeElement() {
-    this._element = null;
   }
 }
