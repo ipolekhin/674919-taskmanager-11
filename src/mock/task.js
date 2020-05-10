@@ -1,5 +1,5 @@
 import {COLORS, DESCRIPTION_ITEMS, DAY_NAMES} from "../const.js";
-import {getRandomBooleanValue} from "../utils";
+import {getRandomBooleanValue} from "../utils/common";
 import {DaysType} from "../const";
 
 const DAYS_VALUE = 8;

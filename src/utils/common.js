@@ -1,4 +1,4 @@
-import {MONTH_NAMES} from "./const";
+import {MONTH_NAMES} from "../const";
 
 const blockForTaskTemplates = (dueDate) => {
   const isExpired = dueDate instanceof Date && dueDate < Date.now();

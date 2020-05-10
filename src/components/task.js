@@ -1,5 +1,5 @@
 // Импортируем функцию createElement создания эелементов
-import {blockForTaskTemplates} from "../utils.js";
+import {blockForTaskTemplates} from "../utils/common.js";
 import {BUTTON_NAMES, ButtonType} from "../const";
 import AbstractComponent from "./abstract-component";
 
