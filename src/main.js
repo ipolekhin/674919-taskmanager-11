@@ -9,7 +9,7 @@ import TaskComponent from "./components/task.js";
 import TasksComponent from "./components/tasks.js";
 import {generateFilters} from "./mock/filter";
 import {generateTasks} from "./mock/task";
-import {render} from "./utils/render";
+import {render, replace} from "./utils/render";
 import {Keys} from "./const";
 
 const TASK_COUNT = 20;
@@ -24,11 +24,11 @@ const collectTasks = (container, endCount, beginCount = 0) => {
 
 const renderTask = (taskListElement, task) => {
   const replaceTaskToEdit = () => {
-    taskListElement.replaceChild(taskEditComponent.getElement(), taskComponent.getElement());
+    replace(taskListElement, taskEditComponent.getElement(), taskComponent.getElement());
   };
 
   const replaceEditToTask = () => {
-    taskListElement.replaceChild(taskComponent.getElement(), taskEditComponent.getElement());
+    replace(taskListElement, taskComponent.getElement(), taskEditComponent.getElement());
   };
 
   // 4.2.1 обработчик нажатия клавиши «Esc», который будет заменять форму редактирования на карточку задачи
