@@ -1,95 +1,12 @@
 import BoardComponent from "./components/board.js";
+import BoardController from "./controllers/board.js";
 import FilterComponent from "./components/filter.js";
-import LoadMoreButtonComponent from "./components/load-more-button.js";
-import NoTasksComponent from "./components/no-tasks.js";
 import SiteMenuComponent from "./components/site-menu.js";
-import SortComponent from "./components/sort";
-import TaskEditComponent from "./components/task-edit.js";
-import TaskComponent from "./components/task.js";
-import TasksComponent from "./components/tasks.js";
 import {generateFilters} from "./mock/filter";
 import {generateTasks} from "./mock/task";
-import {remove, render, replace} from "./utils/render";
-import {Keys} from "./const";
+import {render} from "./utils/render";
 
 const TASK_COUNT = 20;
-const SHOWING_TASKS_COUNT_ON_START = 8;
-const SHOWING_TASKS_COUNT_BY_BUTTON = 8;
-
-const collectTasks = (container, endCount, beginCount = 0) => {
-  return tasks
-    .slice(beginCount, endCount)
-    .forEach((task) => renderTask(container, task));
-};
-
-const renderTask = (taskListElement, task) => {
-  const replaceTaskToEdit = () => {
-    replace(taskEditComponent, taskComponent);
-  };
-
-  const replaceEditToTask = () => {
-    replace(taskComponent, taskEditComponent);
-  };
-
-  // 4.2.1 обработчик нажатия клавиши «Esc», который будет заменять форму редактирования на карточку задачи
-  const onEscKeyDown = (event) => {
-    const isEscapeKey = event.key === Keys.ESC || event.key === Keys.ESCAPE;
-
-    if (isEscapeKey) {
-      replaceEditToTask();
-      document.removeEventListener(`keydown`, onEscKeyDown);
-    }
-  };
-
-  const taskComponent = new TaskComponent(task);
-  const taskEditComponent = new TaskEditComponent(task);
-
-  taskComponent.setEditButtonClickHandler(() => {
-    replaceTaskToEdit();
-    document.addEventListener(`keydown`, onEscKeyDown);
-  });
-
-  taskEditComponent.setSubmitHandler((event) => {
-    event.preventDefault();
-    replaceEditToTask();
-    document.removeEventListener(`keydown`, onEscKeyDown);
-  });
-
-  render(taskListElement, taskComponent );
-};
-
-const renderBoard = (boardComponent, tasks) => {
-  let showingTasksCount = SHOWING_TASKS_COUNT_ON_START;
-  const isAllTasksArchived = tasks.every((task) => task.isArchive);
-
-  // 4.2.2 Сообщение о том, что все задачи выполнены, если таковых нет или они все в архиве.
-  if (isAllTasksArchived) {
-    render(boardComponent.getElement(), new NoTasksComponent());
-
-    return;
-  }
-
-  render(boardComponent.getElement(), new SortComponent());
-  render(boardComponent.getElement(), new TasksComponent());
-
-  const taskListElement = boardComponent.getElement().querySelector(`.board__tasks`);
-
-  collectTasks(taskListElement, SHOWING_TASKS_COUNT_ON_START);
-
-  const loadMoreButtonComponent = new LoadMoreButtonComponent();
-  render(boardComponent.getElement(), loadMoreButtonComponent);
-
-  loadMoreButtonComponent.setClickHandler(() => {
-    const prevTasksCount = showingTasksCount;
-    showingTasksCount = showingTasksCount + SHOWING_TASKS_COUNT_BY_BUTTON;
-
-    collectTasks(taskListElement, showingTasksCount, prevTasksCount);
-
-    if (showingTasksCount >= tasks.length) {
-      remove(loadMoreButtonComponent);
-    }
-  });
-};
 
 // Сохраняем в переменные ключевые элементы страницы.
 const siteMainElement = document.querySelector(`.main`);
@@ -103,5 +20,6 @@ render(siteHeaderElement, new SiteMenuComponent());
 render(siteMainElement, new FilterComponent(filters));
 
 const boardComponent = new BoardComponent();
-renderBoard(boardComponent, tasks);
+const boardController = new BoardController(boardComponent);
+boardController.render(tasks);
 render(siteMainElement, boardComponent);
