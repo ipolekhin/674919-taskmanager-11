@@ -11,6 +11,10 @@ const createElement = (template) => {
   return newElement.firstElementChild;
 };
 
+export const remove = (element) => {
+  element.remove();
+};
+
 // Функция для рендеринга компонентов на страницу.
 const render = (container, element, place) => {
   switch (place) {
@@ -31,6 +35,7 @@ export const replace = (parent, newElement, oldElement) => {
 
 export {
   createElement,
+  remove,
   render,
   replace,
 };
