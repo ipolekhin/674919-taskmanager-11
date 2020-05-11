@@ -1,4 +1,4 @@
-import {SORT_NAMES, TAGS_SORT_NAME} from "../const";
+import {SORT_NAMES, TAGS_SORT_NAME, TagsSortType} from "../const";
 import AbstractComponent from "./abstract-component";
 
 const createSortMarkup = () => {
@@ -27,7 +27,35 @@ const createSortTemplate = () => {
 };
 
 export default class Sort extends AbstractComponent {
+  constructor() {
+    super();
+    this._currentSortType = TagsSortType.DEFAULT;
+  }
+
   getTemplate() {
     return createSortTemplate();
+  }
+
+  getSortType() {
+    return this._currentSortType;
+  }
+
+  setSortTypeChangeHandler(handler) {
+    this.getElement().addEventListener(`click`, (event) => {
+      event.preventDefault();
+
+      if (event.target.tagName !== `A`) {
+        return;
+      }
+
+      const sortType = event.target.dataset.sortType;
+
+      if (this._currentSortType === sortType) {
+        return;
+      }
+
+      this._currentSortType = sortType;
+      handler(this._currentSortType);
+    });
   }
 }
