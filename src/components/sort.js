@@ -45,7 +45,7 @@ export default class Sort extends AbstractComponent {
       event.preventDefault();
 
       if (event.target.tagName !== `A`) {
-        return
+        return;
       }
 
       const sortType = event.target.dataset.sortType;
@@ -56,6 +56,6 @@ export default class Sort extends AbstractComponent {
 
       this._currentSortType = sortType;
       handler(this._currentSortType);
-    })
+    });
   }
 }
