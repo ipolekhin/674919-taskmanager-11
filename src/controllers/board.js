@@ -80,21 +80,35 @@ export default class BoardController {
 
     collectTasks(tasks, taskListElement, SHOWING_TASKS_COUNT_ON_START);
 
-    render(container, this._loadMoreButtonComponent);
-
-    this._loadMoreButtonComponent.setClickHandler(() => {
-      const prevTasksCount = showingTasksCount;
-      showingTasksCount = showingTasksCount + SHOWING_TASKS_COUNT_BY_BUTTON;
-
-      collectTasks(tasks, taskListElement, showingTasksCount, prevTasksCount);
-
+    const renderLoadMoreButton = () => {
       if (showingTasksCount >= tasks.length) {
-        remove(this._loadMoreButtonComponent);
+        return;
       }
-    });
+
+      render(container, this._loadMoreButtonComponent);
+
+      this._loadMoreButtonComponent.setClickHandler(() => {
+        const prevTasksCount = showingTasksCount;
+        showingTasksCount = showingTasksCount + SHOWING_TASKS_COUNT_BY_BUTTON;
+
+        collectTasks(tasks, taskListElement, showingTasksCount, prevTasksCount);
+
+        if (showingTasksCount >= tasks.length) {
+          remove(this._loadMoreButtonComponent);
+        }
+      });
+    };
+
+    renderLoadMoreButton();
 
     this._sortComponent.setSortTypeChangeHandler(() => {
+      showingTasksCount = SHOWING_TASKS_COUNT_BY_BUTTON;
 
+      taskListElement.innerHTML = ``;
+
+      collectTasks(tasks, taskListElement, showingTasksCount);
+
+      renderLoadMoreButton();
     });
   }
 }
