@@ -30,4 +30,12 @@ export default class Sort extends AbstractComponent {
   getTemplate() {
     return createSortTemplate();
   }
+
+  getSortType() {
+
+  }
+
+  getSortTypeChangeHandler() {
+    
+  }
 }
