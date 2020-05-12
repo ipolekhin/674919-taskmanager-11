@@ -8,51 +8,14 @@ import {remove, render} from "../utils/render";
 const SHOWING_TASKS_COUNT_ON_START = 8;
 const SHOWING_TASKS_COUNT_BY_BUTTON = 8;
 
-const collectTasks = (tasks, container, endCount, beginCount = 0) => {
+const collectTasks = (tasks, container) => {
   return tasks
-    .slice(beginCount, endCount)
     .forEach((task) => {
       renderTask(container, task);
     });
 };
 
-// const renderTask = (taskListElement, task) => {
-//   const replaceTaskToEdit = () => {
-//     replace(taskEditComponent, taskComponent);
-//   };
-//
-//   const replaceEditToTask = () => {
-//     replace(taskComponent, taskEditComponent);
-//   };
-//
-//   // 4.2.1 обработчик нажатия клавиши «Esc», который будет заменять форму редактирования на карточку задачи
-//   const onEscKeyDown = (event) => {
-//     const isEscapeKey = event.key === Keys.ESC || event.key === Keys.ESCAPE;
-//
-//     if (isEscapeKey) {
-//       replaceEditToTask();
-//       document.removeEventListener(`keydown`, onEscKeyDown);
-//     }
-//   };
-//
-//   const taskComponent = new TaskComponent(task);
-//   const taskEditComponent = new TaskEditComponent(task);
-//
-//   taskComponent.setEditButtonClickHandler(() => {
-//     replaceTaskToEdit();
-//     document.addEventListener(`keydown`, onEscKeyDown);
-//   });
-//
-//   taskEditComponent.setSubmitHandler((event) => {
-//     event.preventDefault();
-//     replaceEditToTask();
-//     document.removeEventListener(`keydown`, onEscKeyDown);
-//   });
-//
-//   render(taskListElement, taskComponent);
-// };
-
-const getSortedTasks = (tasks, sortType) => {
+const getSortedTasks = (tasks, sortType, from, to) => {
   let sortedTasks = [];
   const showingTasks = tasks.slice();
 
@@ -68,7 +31,7 @@ const getSortedTasks = (tasks, sortType) => {
       break;
   }
 
-  return sortedTasks;
+  return sortedTasks.slice(from, to);
 };
 
 export default class BoardController {
@@ -94,41 +57,43 @@ export default class BoardController {
 
     const taskListElement = this._tasksComponent.getElement();
 
-    const renderLoadMoreButton = () => {
-      if (showingTasksCount >= tasks.length) {
-        return;
-      }
-
-      render(container, this._loadMoreButtonComponent);
-
-      this._loadMoreButtonComponent.setClickHandler(() => {
-        const prevTasksCount = showingTasksCount;
-        showingTasksCount = showingTasksCount + SHOWING_TASKS_COUNT_BY_BUTTON;
-
-        collectTasks(tasks, taskListElement, showingTasksCount, prevTasksCount);
-
-        if (showingTasksCount >= tasks.length) {
-          remove(this._loadMoreButtonComponent);
-        }
-      });
-    };
-
     render(container, this._sortComponent);
     render(container, this._tasksComponent);
 
-    collectTasks(tasks, taskListElement, SHOWING_TASKS_COUNT_ON_START);
+    collectTasks(tasks.slice(0, showingTasksCount), taskListElement);
     renderLoadMoreButton();
+  }
 
-    this._sortComponent.setSortTypeChangeHandler((sortType) => {
-      showingTasksCount = SHOWING_TASKS_COUNT_BY_BUTTON;
+  _renderLoadMoreButton() {
+    if (showingTasksCount >= tasks.length) {
+      return;
+    }
 
-      const sortedTasks = getSortedTasks(tasks, sortType);
+    render(container, this._loadMoreButtonComponent);
 
-      taskListElement.innerHTML = ``;
+    this._loadMoreButtonComponent.setClickHandler(() => {
+      const prevTasksCount = showingTasksCount;
+      showingTasksCount = showingTasksCount + SHOWING_TASKS_COUNT_BY_BUTTON;
 
-      collectTasks(sortedTasks, taskListElement, showingTasksCount);
+      const sortedTasks = getSortedTasks(tasks, this._sortComponent.getSortType(), prevTasksCount, showingTasksCount);
 
-      renderLoadMoreButton();
+      collectTasks(sortedTasks, taskListElement);
+
+      if (showingTasksCount >= tasks.length) {
+        remove(this._loadMoreButtonComponent);
+      }
     });
+  }
+
+  _onSortTypeChange(sortType) {
+    showingTasksCount = SHOWING_TASKS_COUNT_BY_BUTTON;
+
+    const sortedTasks = getSortedTasks(tasks, sortType, 0, showingTasksCount);
+
+    taskListElement.innerHTML = ``;
+
+    collectTasks(sortedTasks, taskListElement);
+
+    renderLoadMoreButton();
   }
 }
