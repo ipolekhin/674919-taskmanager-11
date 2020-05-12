@@ -37,16 +37,21 @@ const getSortedTasks = (tasks, sortType, from, to) => {
 export default class BoardController {
   constructor(container) {
     this._container = container;
+    this._tasks = [];
+    this._showingTasksCount = SHOWING_TASKS_COUNT_ON_START;
     this._noTasksComponent = new NoTasksComponent();
     this._sortComponent = new SortComponent();
     this._tasksComponent = new TasksComponent();
     this._loadMoreButtonComponent = new LoadMoreButtonComponent();
+    this._onSortTypeChange = this._onSortTypeChange.bind(this);
+    this._sortComponent.setSortTypeChangeHandler(this._onSortTypeChange);
   }
 
   render(tasks) {
-    let showingTasksCount = SHOWING_TASKS_COUNT_ON_START;
+    this._tasks = tasks;
     const container = this._container.getElement();
-    const isAllTasksArchived = tasks.every((task) => task.isArchive);
+    const isAllTasksArchived = this._tasks.every((task) => task.isArchive);
+
 
     // 4.2.2 Сообщение о том, что все задачи выполнены, если таковых нет или они все в архиве.
     if (isAllTasksArchived) {
@@ -60,40 +65,41 @@ export default class BoardController {
     render(container, this._sortComponent);
     render(container, this._tasksComponent);
 
-    collectTasks(tasks.slice(0, showingTasksCount), taskListElement);
-    renderLoadMoreButton();
+    collectTasks(tasks.slice(0, this._showingTasksCount), taskListElement);
+    this._renderLoadMoreButton();
   }
 
   _renderLoadMoreButton() {
-    if (showingTasksCount >= tasks.length) {
+    if (this._showingTasksCount >= this._tasks.length) {
       return;
     }
 
+    const container = this._container.getElement();
     render(container, this._loadMoreButtonComponent);
 
     this._loadMoreButtonComponent.setClickHandler(() => {
-      const prevTasksCount = showingTasksCount;
-      showingTasksCount = showingTasksCount + SHOWING_TASKS_COUNT_BY_BUTTON;
+      const prevTasksCount = this._showingTasksCount;
+      const taskListElement = this._tasksComponent.getElement();
+      this._showingTasksCount = this._showingTasksCount + SHOWING_TASKS_COUNT_BY_BUTTON;
 
-      const sortedTasks = getSortedTasks(tasks, this._sortComponent.getSortType(), prevTasksCount, showingTasksCount);
+      collectTasks(sortedTasks.slice(0, this._showingTasksCount), taskListElement);
 
-      collectTasks(sortedTasks, taskListElement);
-
-      if (showingTasksCount >= tasks.length) {
+      if (this._showingTasksCount >= this._tasks.length) {
         remove(this._loadMoreButtonComponent);
       }
     });
   }
 
   _onSortTypeChange(sortType) {
-    showingTasksCount = SHOWING_TASKS_COUNT_BY_BUTTON;
+    this._showingTasksCount = SHOWING_TASKS_COUNT_BY_BUTTON;
 
-    const sortedTasks = getSortedTasks(tasks, sortType, 0, showingTasksCount);
+    const sortedTasks = getSortedTasks(this._tasks, sortType, 0, thi._showingTasksCount);
+    const taskListElement = this._tasksComponent.getElement();
 
     taskListElement.innerHTML = ``;
 
     collectTasks(sortedTasks, taskListElement);
 
-    renderLoadMoreButton();
+    this._renderLoadMoreButton();
   }
 }
