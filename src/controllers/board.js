@@ -2,11 +2,8 @@ import LoadMoreButtonComponent from "../components/load-more-button.js";
 import NoTasksComponent from "../components/no-tasks.js";
 import SortComponent from "../components/sort.js";
 import {TagsSortType} from "../const";
-import TaskEditComponent from "../components/task-edit.js";
-import TaskComponent from "../components/task.js";
 import TasksComponent from "../components/tasks.js";
-import {Keys} from "../const";
-import {remove, render, replace} from "../utils/render";
+import {remove, render} from "../utils/render";
 
 const SHOWING_TASKS_COUNT_ON_START = 8;
 const SHOWING_TASKS_COUNT_BY_BUTTON = 8;
@@ -19,41 +16,41 @@ const collectTasks = (tasks, container, endCount, beginCount = 0) => {
     });
 };
 
-const renderTask = (taskListElement, task) => {
-  const replaceTaskToEdit = () => {
-    replace(taskEditComponent, taskComponent);
-  };
-
-  const replaceEditToTask = () => {
-    replace(taskComponent, taskEditComponent);
-  };
-
-  // 4.2.1 обработчик нажатия клавиши «Esc», который будет заменять форму редактирования на карточку задачи
-  const onEscKeyDown = (event) => {
-    const isEscapeKey = event.key === Keys.ESC || event.key === Keys.ESCAPE;
-
-    if (isEscapeKey) {
-      replaceEditToTask();
-      document.removeEventListener(`keydown`, onEscKeyDown);
-    }
-  };
-
-  const taskComponent = new TaskComponent(task);
-  const taskEditComponent = new TaskEditComponent(task);
-
-  taskComponent.setEditButtonClickHandler(() => {
-    replaceTaskToEdit();
-    document.addEventListener(`keydown`, onEscKeyDown);
-  });
-
-  taskEditComponent.setSubmitHandler((event) => {
-    event.preventDefault();
-    replaceEditToTask();
-    document.removeEventListener(`keydown`, onEscKeyDown);
-  });
-
-  render(taskListElement, taskComponent);
-};
+// const renderTask = (taskListElement, task) => {
+//   const replaceTaskToEdit = () => {
+//     replace(taskEditComponent, taskComponent);
+//   };
+//
+//   const replaceEditToTask = () => {
+//     replace(taskComponent, taskEditComponent);
+//   };
+//
+//   // 4.2.1 обработчик нажатия клавиши «Esc», который будет заменять форму редактирования на карточку задачи
+//   const onEscKeyDown = (event) => {
+//     const isEscapeKey = event.key === Keys.ESC || event.key === Keys.ESCAPE;
+//
+//     if (isEscapeKey) {
+//       replaceEditToTask();
+//       document.removeEventListener(`keydown`, onEscKeyDown);
+//     }
+//   };
+//
+//   const taskComponent = new TaskComponent(task);
+//   const taskEditComponent = new TaskEditComponent(task);
+//
+//   taskComponent.setEditButtonClickHandler(() => {
+//     replaceTaskToEdit();
+//     document.addEventListener(`keydown`, onEscKeyDown);
+//   });
+//
+//   taskEditComponent.setSubmitHandler((event) => {
+//     event.preventDefault();
+//     replaceEditToTask();
+//     document.removeEventListener(`keydown`, onEscKeyDown);
+//   });
+//
+//   render(taskListElement, taskComponent);
+// };
 
 const getSortedTasks = (tasks, sortType) => {
   let sortedTasks = [];
