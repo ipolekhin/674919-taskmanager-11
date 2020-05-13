@@ -27,14 +27,14 @@ const createTaskTemplate = (task) => {
   const {description, dueDate, color, repeatingDays, isArchive, isFavorite} = task;
   const {isDateShowing, date, time, deadlineClass} = blockForTaskTemplates(dueDate);
   const repeatClass = Object.values(repeatingDays).some((element) => element) ? `card--repeat` : ``;
-  const buttonMarkup = createButtonsMarkup(isArchive, isFavorite);
+  const buttonsMarkup = createButtonsMarkup(isArchive, isFavorite);
 
   return (
     `<article class="card card--${color} ${repeatClass} ${deadlineClass}">
       <div class="card__form">
         <div class="card__inner">
           <div class="card__control">
-            ${buttonMarkup}
+            ${buttonsMarkup}
           </div>
 
           <div class="card__color-bar">
@@ -83,6 +83,16 @@ export default class Task extends AbstractComponent {
 
   setEditButtonClickHandler(handler) {
     this.getElement().querySelector(`.card__btn--edit`)
+      .addEventListener(`click`, handler);
+  }
+
+  setFavoritesButtonClickHandler(handler) {
+    this.getElement().querySelector(`.card__btn--favorites`)
+      .addEventListener(`click`, handler);
+  }
+
+  setArchiveButtonClickHandler(handler) {
+    this.getElement().querySelector(`.card__btn--archive`)
       .addEventListener(`click`, handler);
   }
 }
