@@ -1,7 +1,7 @@
 import {Keys} from "../const";
 import {render, replace} from "../utils/render";
 import TaskComponent from "../components/task";
-import TaskEditComponent from "../components/task-edit"
+import TaskEditComponent from "../components/task-edit";
 
 export default class TaskController {
   constructor(container, onDataChange) {
@@ -51,7 +51,7 @@ export default class TaskController {
   }
 
   _onEscKeyDown(event) {
-    const isEscapeKey = event.key === Keys.ESC || evt.event === Keys.ESCAPE;
+    const isEscapeKey = event.key === Keys.ESC || event.event === Keys.ESCAPE;
 
     if (isEscapeKey) {
       this._replaceEditToTask();
