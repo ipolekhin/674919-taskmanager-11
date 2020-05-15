@@ -73,6 +73,11 @@ export const MENU_NAMES = [
   MenuType.STATISTIC,
 ];
 
+export const Mode = {
+  DEFAULT: `default`,
+  EDIT: `edit`,
+};
+
 export const MONTH_NAMES = [
   `January`,
   `February`,
