@@ -51,7 +51,7 @@ export default class TaskController {
   }
 
   _onEscKeyDown(event) {
-    const isEscapeKey = event.key === Keys.ESC || event.event === Keys.ESCAPE;
+    const isEscapeKey = event.key === Keys.ESC || event.key === Keys.ESCAPE;
 
     if (isEscapeKey) {
       this._replaceEditToTask();
