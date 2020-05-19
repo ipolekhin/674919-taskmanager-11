@@ -14,5 +14,13 @@ module.exports = {
     // По умолчанию адрес сервера http://localhost:8080
     // Открывать в режиме инкогнито, чтобы файл не кэшировал файлы сборки
     watchContentBase: true,
-  }
+  },
+  module: {
+    rules: [
+      {
+        test: /\.css$/i,
+        use: [`style-loader`, `css-loader`],
+      },
+    ],
+  },
 };
