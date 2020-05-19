@@ -1,4 +1,4 @@
-import {MONTH_NAMES} from "../const";
+import moment from "moment";
 
 const blockForTaskTemplates = (dueDate) => {
   const isExpired = dueDate instanceof Date && dueDate < Date.now();
@@ -6,27 +6,25 @@ const blockForTaskTemplates = (dueDate) => {
 
   return {
     isDateShowing: !!dueDate,
-    date: isDateShowing ? `${dueDate.getDate()} ${MONTH_NAMES[dueDate.getMonth()]}` : ``,
+    date: isDateShowing ? formatDate(dueDate) : ``,
     time: isDateShowing ? formatTime(dueDate) : ``,
     deadlineClass: isExpired ? `card--deadline` : ``,
   };
 };
 
-const castTimeFormat = (value) => {
-  return value.toString().padStart(2, `0`);
+const formatTime = (date) => {
+  return moment(date).format(`hh:mm`);
 };
 
-const formatTime = (time) => {
-  const hours = castTimeFormat(time.getHours() % 24);
-  const minutes = castTimeFormat(time.getMinutes());
-
-  return `${hours}:${minutes}`;
+const formatDate = (date) => {
+  return moment(date).format(`DD MMMM`);
 };
 
 const getRandomBooleanValue = () => Math.random() > 0.5;
 
 export {
   blockForTaskTemplates,
+  formatDate,
   formatTime,
   getRandomBooleanValue,
 };
