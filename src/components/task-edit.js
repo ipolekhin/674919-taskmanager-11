@@ -72,7 +72,7 @@ const createTaskEditTemplate = (task, options = {}) => {
   const repeatStatus = isRepeatingTask ? `yes` : `no`;
   const dateDeadline = isRepeatingTask ? `disabled` : ``;
   const repeatDays = !isRepeatingTask ? `disabled` : ``;
-  const saveButton = isBlockSaveButton ? `disabled` : ``;
+  const saveButtonStatus = isBlockSaveButton ? `disabled` : ``;
 
   return (
     `<article class="card card--edit card--${color} ${repeatClass} ${deadlineClass}">
@@ -137,7 +137,7 @@ const createTaskEditTemplate = (task, options = {}) => {
           </div>
 
           <div class="card__status-btns">
-            <button class="card__save" type="submit" ${saveButton}>save</button>
+            <button class="card__save" type="submit" ${saveButtonStatus}>save</button>
             <button class="card__delete" type="button">delete</button>
           </div>
         </div>
