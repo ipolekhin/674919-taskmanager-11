@@ -2,22 +2,22 @@ import {isRepeating, isOneDay, isOverdueDate} from "./common";
 import {FilterType} from "../const";
 
 // Получение задач в архиве getArchiveTasks
-export const getArchiveTasks = (tasks) => {
+const getArchiveTasks = (tasks) => {
   return tasks.filter((task) => task.isArchive);
 };
 
 // Получение задач не из архива getNotArchiveTasks
-export const getNotArchiveTasks = (tasks) => {
+const getNotArchiveTasks = (tasks) => {
   return tasks.filter((task) => !task.isArchive);
 };
 
 // Получение избранных задач getFavoriteTasks
-export const getFavoriteTasks = (tasks) => {
+const getFavoriteTasks = (tasks) => {
   return tasks.filter((task) => task.isFavorite);
 };
 
 // Получение просроченных задач getOverdueTasks
-export const getOverdueTasks = (tasks, date) => {
+const getOverdueTasks = (tasks, date) => {
   return tasks.filter((task) => {
     const dueDate = task.dueDate;
 
@@ -30,17 +30,17 @@ export const getOverdueTasks = (tasks, date) => {
 };
 
 // Получение повторяющихся задач getRepeatingTasks
-export const getRepeatingTasks = (tasks) => {
+const getRepeatingTasks = (tasks) => {
   return tasks.filter((task) => isRepeating(task.repeatingDays));
 };
 
 // Получение задач за сегодняшний день getTasksInOneDay
-export const getTasksInOneDay = (tasks, date) => {
+const getTasksInOneDay = (tasks, date) => {
   return tasks.filter((task) => isOneDay(task.dueDate, date));
 };
 
 // Функция фильтрации getTasksByFilter
-export const getTasksByFilter = (tasks, filterType) => {
+const getTasksByFilter = (tasks, filterType) => {
   const nowDate = new Date();
 
   switch (filterType) {
@@ -59,4 +59,14 @@ export const getTasksByFilter = (tasks, filterType) => {
   }
 
   return tasks;
+};
+
+export {
+  getArchiveTasks,
+  getNotArchiveTasks,
+  getFavoriteTasks,
+  getOverdueTasks,
+  getRepeatingTasks,
+  getTasksInOneDay,
+  getTasksByFilter,
 };

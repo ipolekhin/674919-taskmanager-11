@@ -1,11 +1,21 @@
+import {getTasksByFilter} from "../utils/filter";
+import {FilterType} from "../const";
+
 export default class Tasks {
   constructor() {
     this._tasks = [];
+    this._activeFilterType = FilterType.ALL;
     this._dataChangeHandlers = [];
+    this._filterChangeHandlers = [];
   }
 
-  // Метод получения всех задач
-  getTasks(tasks) {
+  // Метод получения всех отфильтрованных задач
+  getTasks() {
+    return getTasksByFilter(this._tasks, this._activeFilterType);
+  }
+
+  // Метод получения всех неотфильтрованных задач
+  getTasksAll() {
     return this._tasks;
   }
 
@@ -13,6 +23,13 @@ export default class Tasks {
   setTasks(tasks) {
     this._tasks = Array.from(tasks);
     this._callHandlers(this._dataChangeHandlers);
+  }
+
+  // Метод подписывается снаружи на изменение фильтра
+  setFilter(filterType) {
+    // меняем активный тип фильтра
+    this._activeFilterType = filterType;
+    this._callHandlers(this._filterChangeHandlers);
   }
 
   // Обновить одну задачу в модели
