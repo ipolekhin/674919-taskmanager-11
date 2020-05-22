@@ -1,7 +1,7 @@
 import moment from "moment";
 
 const blockForTaskTemplates = (dueDate) => {
-  const isExpired = dueDate instanceof Date && dueDate < Date.now();
+  const isExpired = dueDate instanceof Date && isOverdueDate(dueDate, new Date());
   const isDateShowing = !!dueDate;
 
   return {
