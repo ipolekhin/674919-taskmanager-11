@@ -122,15 +122,9 @@ export default class BoardController {
 
   _onSortTypeChange(sortType) {
     this._showingTasksCount = SHOWING_TASKS_COUNT_BY_BUTTON;
-
     const sortedTasks = getSortedTasks(this._tasksModel.getTasks(), sortType, 0, this._showingTasksCount);
-    const taskListElement = this._tasksComponent.getElement();
-
-    taskListElement.innerHTML = ``;
-
-    const newTasks = collectTasks(sortedTasks, taskListElement, this._onDataChange, this._onViewChange);
-    this._showedTaskControllers = newTasks;
-
+    this._removeTasks();
+    this._renderTasks(sortedTasks);
     this._renderLoadMoreButton();
   }
 
