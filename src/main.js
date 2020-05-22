@@ -2,8 +2,7 @@ import BoardComponent from "./components/board";
 import BoardController from "./controllers/board";
 import FilterController from "./controllers/filter";
 import SiteMenuComponent from "./components/site-menu";
-import TasksModel from "./models/tasks"
-// import {generateFilters} from "./mock/filter";
+import TasksModel from "./models/tasks";
 import {generateTasks} from "./mock/task";
 import {render} from "./utils/render";
 
@@ -16,7 +15,6 @@ render(siteHeaderElement, new SiteMenuComponent());
 
 // Генерируем задачи
 const tasks = generateTasks(TASK_COUNT);
-// const filters = generateFilters(tasks);
 const tasksModel = new TasksModel();
 tasksModel.setTasks(tasks);
 
