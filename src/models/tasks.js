@@ -46,6 +46,11 @@ export default class Tasks {
     return true;
   }
 
+  // Callback фильтра при изменении
+  setFilterChangeHandler(handler) {
+    this._filterChangeHandlers.push(handler);
+  }
+
   //  Callback метод, если задача изменилась то будем её вызывать
   setDataChangeHandler(handler) {
     this._dataChangeHandlers.push(handler);

@@ -1,5 +1,5 @@
 import {Keys, Mode} from "../const";
-import {render, replace} from "../utils/render";
+import {render, replace, remove} from "../utils/render";
 import TaskComponent from "../components/task";
 import TaskEditComponent from "../components/task-edit";
 
@@ -61,6 +61,12 @@ export default class TaskController {
     this._onViewChange();
     replace(this._taskEditComponent, this._taskComponent);
     this._mode = Mode.EDIT;
+  }
+
+  destroy() {
+    remove(this._taskEditComponent);
+    remove(this._taskComponent);
+    document.removeEventListener(`keydown`, this._onEscKeyDown);
   }
 
   _replaceEditToTask() {
