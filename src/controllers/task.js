@@ -3,6 +3,8 @@ import {render, replace, remove} from "../utils/render";
 import TaskComponent from "../components/task";
 import TaskEditComponent from "../components/task-edit";
 
+const EmptyTask = {};
+
 export default class TaskController {
   constructor(container, onDataChange, onViewChange) {
     this._container = container;
@@ -85,3 +87,5 @@ export default class TaskController {
     }
   }
 }
+
+export {EmptyTask};
