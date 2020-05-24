@@ -1,7 +1,7 @@
 import LoadMoreButtonComponent from "../components/load-more-button";
 import NoTasksComponent from "../components/no-tasks";
 import SortComponent from "../components/sort";
-import {Mode, TagsSortType} from "../const";
+import {Mode as TaskControllerMode, TagsSortType} from "../const";
 import TaskController, {EmptyTask} from "./task";
 import TasksComponent from "../components/tasks";
 import {remove, render} from "../utils/render";
@@ -13,7 +13,7 @@ const collectTasks = (tasks, container, onDataChange, onViewChange) => {
   return tasks
     .map((task) => {
       const taskController = new TaskController(container, onDataChange, onViewChange);
-      taskController.render(task, Mode.DEFAULT);
+      taskController.render(task, TaskControllerMode.DEFAULT);
 
       return taskController;
     });
@@ -48,6 +48,7 @@ export default class BoardController {
     this._sortComponent = new SortComponent();
     this._tasksComponent = new TasksComponent();
     this._loadMoreButtonComponent = new LoadMoreButtonComponent();
+    this._creatingTask = null;
     this._onDataChange = this._onDataChange.bind(this);
     this._onSortTypeChange = this._onSortTypeChange.bind(this);
     this._onViewChange = this._onViewChange.bind(this);
@@ -74,6 +75,16 @@ export default class BoardController {
 
     this._renderTasks(tasks.slice(0, this._showingTasksCount));
     this._renderLoadMoreButton();
+  }
+
+  createTask() {
+    if (this._creatingTask) {
+      return;
+    }
+
+    const taskListElement = this._tasksComponent.getElement();
+    this._creatingTask = new TaskController(taskListElement, this._onDataChange, this._onViewChange);
+    this._creatingTask.render(EmptyTask, TaskControllerMode.ADDING);
   }
 
   _removeTasks() {

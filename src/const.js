@@ -82,6 +82,7 @@ export const MENU_NAMES = [
 ];
 
 export const Mode = {
+  ADDING: `adding`,
   DEFAULT: `default`,
   EDIT: `edit`,
 };
