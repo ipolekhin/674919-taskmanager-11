@@ -13,7 +13,7 @@ const collectTasks = (tasks, container, onDataChange, onViewChange) => {
   return tasks
     .map((task) => {
       const taskController = new TaskController(container, onDataChange, onViewChange);
-      taskController.render(task);
+      taskController.render(task, Mode.DEFAULT);
 
       return taskController;
     });
