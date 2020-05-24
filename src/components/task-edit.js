@@ -1,4 +1,4 @@
-import {COLORS, DAY_NAMES, DaysType} from "../const";
+import {COLORS, DAY_NAMES} from "../const";
 import {formatDate, formatTime, isRepeating, isOverdueDate} from "../utils/common";
 import AbstractSmartComponent from "./abstract-smart-component";
 import flatpickr from "flatpickr";
