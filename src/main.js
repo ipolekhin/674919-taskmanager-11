@@ -5,7 +5,7 @@ import SiteMenuComponent from "./components/site-menu";
 import TasksModel from "./models/tasks";
 import {generateTasks} from "./mock/task";
 import {render} from "./utils/render";
-import {TagsMenuType as MenuItem} from "./const";
+import {IdMenuType as MenuItem} from "./const";
 
 const TASK_COUNT = 20;
 

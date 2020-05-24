@@ -111,6 +111,12 @@ export const TAGS_SORT_NAME = [
   TagsSortType.DATE_DOWN,
 ];
 
+export const IdMenuType = {
+  NEW_TASK: `control__new-task`,
+  TASKS: `control__task`,
+  STATISTIC: `control__statistic`,
+};
+
 export const TagsMenuType = {
   NEW_TASK: `new-task`,
   TASKS: `task`,
