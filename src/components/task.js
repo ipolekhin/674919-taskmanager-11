@@ -1,6 +1,7 @@
 // Импортируем функцию createElement создания эелементов
 import {blockForTaskTemplates} from "../utils/common.js";
 import {BUTTON_NAMES, ButtonType} from "../const";
+import {encode} from "he";
 import AbstractComponent from "./abstract-component";
 
 const createButtonsMarkup = (isArchive, isFavorite) => {
@@ -24,8 +25,9 @@ const createButtonsMarkup = (isArchive, isFavorite) => {
 
 // Функция вовращает html разметку нашей карточки задач
 const createTaskTemplate = (task) => {
-  const {description, dueDate, color, repeatingDays, isArchive, isFavorite} = task;
+  const {description: notSanitizedDescription, dueDate, color, repeatingDays, isArchive, isFavorite} = task;
   const {isDateShowing, date, time, deadlineClass} = blockForTaskTemplates(dueDate);
+  const description = encode(notSanitizedDescription);
   const repeatClass = Object.values(repeatingDays).some((element) => element) ? `card--repeat` : ``;
   const buttonsMarkup = createButtonsMarkup(isArchive, isFavorite);
 

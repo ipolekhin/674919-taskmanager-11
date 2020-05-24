@@ -113,12 +113,12 @@ export const TAGS_SORT_NAME = [
 
 export const TagsMenuType = {
   NEW_TASK: `new-task`,
-  TASK: `task`,
+  TASKS: `task`,
   STATISTIC: `statistic`,
 };
 
 export const TAGS_MENU_NAME = [
   TagsMenuType.NEW_TASK,
-  TagsMenuType.TASK,
+  TagsMenuType.TASKS,
   TagsMenuType.STATISTIC,
 ];
