@@ -48,12 +48,14 @@ const generateTask = () => {
   return {
     // Дата и время или null
     dueDate,
-    description: getRandomItem(DESCRIPTION_ITEMS),
-    // Объект с фиксированными ключами
-    repeatingDays: dueDate ? Object.assign({}, DEFAULT_REPEATING_DAYS) : generateRepeatingDays(),
+    // уникальный id задачи
+    id: String(new Date() + Math.random()),
     color: getRandomItem(COLORS),
+    description: getRandomItem(DESCRIPTION_ITEMS),
     isArchive: getRandomBooleanValue(),
     isFavorite: getRandomBooleanValue(),
+    // Объект с фиксированными ключами
+    repeatingDays: dueDate ? Object.assign({}, DEFAULT_REPEATING_DAYS) : generateRepeatingDays(),
   };
 };
 

@@ -10,7 +10,15 @@ export const BUTTON_NAMES = [
   ButtonType.FAVORITES,
 ];
 
-export const COLORS = [`black`, `yellow`, `blue`, `green`, `pink`];
+export const COLOR = {
+  BLACK: `black`,
+  YELLOW: `yellow`,
+  BLUE: `blue`,
+  GREEN: `green`,
+  PINK: `pink`,
+};
+
+export const COLORS = Object.values(COLOR);
 
 export const DaysType = {
   MO: `mo`,
@@ -74,6 +82,7 @@ export const MENU_NAMES = [
 ];
 
 export const Mode = {
+  ADDING: `adding`,
   DEFAULT: `default`,
   EDIT: `edit`,
 };
@@ -102,14 +111,20 @@ export const TAGS_SORT_NAME = [
   TagsSortType.DATE_DOWN,
 ];
 
+export const IdMenuType = {
+  NEW_TASK: `control__new-task`,
+  TASKS: `control__task`,
+  STATISTIC: `control__statistic`,
+};
+
 export const TagsMenuType = {
   NEW_TASK: `new-task`,
-  TASK: `task`,
+  TASKS: `task`,
   STATISTIC: `statistic`,
 };
 
 export const TAGS_MENU_NAME = [
   TagsMenuType.NEW_TASK,
-  TagsMenuType.TASK,
+  TagsMenuType.TASKS,
   TagsMenuType.STATISTIC,
 ];
