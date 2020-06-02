@@ -42,7 +42,7 @@ statisticsComponent.hide();
 siteMenuComponent.setOnChange((menuItem) => {
   switch (menuItem) {
     case MenuItem.NEW_TASK:
-      siteMenuComponent.setActiveItem(MenuItem.TASKS);
+      siteMenuComponent.setActiveItem(MenuItem.NEW_TASK);
       statisticsComponent.hide();
       boardController.show();
       boardController.createTask();

@@ -122,7 +122,7 @@ export const TAGS_SORT_NAME = [
 export const IdMenuType = {
   NEW_TASK: `control__new-task`,
   TASKS: `control__task`,
-  STATISTIC: `control__statistic`,
+  STATISTICS: `control__statistic`,
 };
 
 export const TagsMenuType = {
