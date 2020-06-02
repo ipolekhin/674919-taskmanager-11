@@ -20,6 +20,14 @@ export const COLOR = {
 
 export const COLORS = Object.values(COLOR);
 
+export const colorToHex = {
+  black: `#000000`,
+  blue: `#0c5cdd`,
+  green: `#31b55c`,
+  pink: `#ff3cb9`,
+  yellow: `#ffe125`,
+};
+
 export const DaysType = {
   MO: `mo`,
   TU: `tu`,
