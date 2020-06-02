@@ -128,11 +128,11 @@ export const IdMenuType = {
 export const TagsMenuType = {
   NEW_TASK: `new-task`,
   TASKS: `task`,
-  STATISTIC: `statistic`,
+  STATISTICS: `statistic`,
 };
 
 export const TAGS_MENU_NAME = [
   TagsMenuType.NEW_TASK,
   TagsMenuType.TASKS,
-  TagsMenuType.STATISTIC,
+  TagsMenuType.STATISTICS,
 ];
