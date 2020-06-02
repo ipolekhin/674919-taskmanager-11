@@ -58,6 +58,14 @@ export default class BoardController {
     this._tasksModel.setFilterChangeHandler(this._onFilterChange);
   }
 
+  hide() {
+    this._container.hide();
+  }
+
+  show() {
+    this._container.show();
+  }
+
   render() {
     const container = this._container.getElement();
     const tasks = this._tasksModel.getTasks();
@@ -145,7 +153,6 @@ export default class BoardController {
       // Удаление
       this._tasksModel.removeTask(oldData.id);
       this._updateTasks(this._showingTasksCount);
-      // Обновление
     } else {
       // Обновление
       const isSuccess = this._tasksModel.updateTask(oldData.id, newData);
